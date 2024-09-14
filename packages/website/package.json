@@ -53,5 +53,8 @@
     "@react-instastories/presets": "file:../../packages/presets/dist",
     "react": "file:../../node_modules/react",
     "react-dom": "file:../../node_modules/react-dom"
+  },
+  "optionalDependencies": {
+    "@napi-rs/simple-git-linux-x64-gnu": "*"
   }
 }

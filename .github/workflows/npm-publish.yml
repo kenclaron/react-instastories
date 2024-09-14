@@ -34,13 +34,12 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: npm run build
-      - run: cd packages/base && npm publish --provenance --access public
+      - run: cd packages/base && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: cd packages/external && npm publish --provenance --access public
+      - run: cd packages/external && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: cd packages/presets && npm publish --provenance --access public
+      - run: cd packages/presets && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

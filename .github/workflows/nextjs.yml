@@ -76,8 +76,8 @@ jobs:
       - name: Build with Next.js
         run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ env.NEXT_PUBLIC_BASE_PATH }}
-          NEXT_PUBLIC_OPENGRAPH_IMAGE: ${{ env.NEXT_PUBLIC_OPENGRAPH_IMAGE }}
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH }}
+          NEXT_PUBLIC_OPENGRAPH_IMAGE: ${{ vars.NEXT_PUBLIC_OPENGRAPH_IMAGE }}
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

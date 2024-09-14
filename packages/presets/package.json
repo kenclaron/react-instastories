@@ -31,6 +31,9 @@
     "dist"
   ],
   "keywords": [
+    "front-end",
+    "frontend",
+    "microfrontend",
     "ui",
     "components",
     "style",
@@ -39,7 +42,6 @@
     "css",
     "scss",
     "sass",
-    "library",
-    "microfrontend"
+    "library"
   ]
 }

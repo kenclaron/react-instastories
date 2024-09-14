@@ -48,6 +48,9 @@
     "dist"
   ],
   "keywords": [
+    "front-end",
+    "frontend",
+    "microfrontend",
     "zero-dependencies",
     "library",
     "react",
@@ -56,7 +59,6 @@
     "stories",
     "controls",
     "events",
-    "hooks",
-    "microfrontend"
+    "hooks"
   ]
 }

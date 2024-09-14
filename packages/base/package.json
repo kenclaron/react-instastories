@@ -47,6 +47,9 @@
     "dist"
   ],
   "keywords": [
+    "front-end",
+    "frontend",
+    "microfrontend",
     "zero-dependencies",
     "library",
     "react",
@@ -54,7 +57,6 @@
     "stories",
     "instastories",
     "components",
-    "viewer",
-    "microfrontend"
+    "viewer"
   ]
 }

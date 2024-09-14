@@ -1,0 +1,15 @@
+{
+  "createdAt": 2024,
+  "description": "React library for improving user experience in web applications. Showcases and documentation for the next generation of React Stories Library.",
+  "files": {
+    "codeOfConduct": "CODE_OF_CONDUCT.md",
+    "readme": "README.md"
+  },
+  "image": {
+    "type": "image/jpeg",
+    "alt": "Effortlessly Integrate Stories into Your Projects. React library that makes it easy to embed user and system stories in your web applications. Try it out and see for yourself how simple and effective it can be to enhance user experience."
+  },
+  "language": "en-US",
+  "name": "react-instastories",
+  "title": "React Stories Library"
+}

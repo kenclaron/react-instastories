@@ -1,0 +1,293 @@
+# InstaStories
+
+The `InstaStories` component is the main component for rendering the library.
+
+## Properties
+
+### Component
+
+| Property    | Type                              | Description                                                                                                                                                        |
+| ----------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `config`    | [`Configuration`](#configuration) | Optional configuration of the library component.                                                                                                                   |
+| `children`  | `React.ReactNode`                 | Children elements to be rendered inside the library component ([Configurable](/docs/base/configurable), [Stories](/docs/base/stories), [Pages](/docs/base/pages)). |
+| `...events` | [`ViewerEvents`](#events)         | Optional callback events for component.                                                                                                                            |
+
+### Events
+
+| Event     | Type       | Description                                            |
+| --------- | ---------- | ------------------------------------------------------ |
+| `onOpen`  | `Function` | Function to be called when the viewer opens/mounts.    |
+| `onShow`  | `Function` | Function to be called when the viewer starts to show.  |
+| `onHide`  | `Function` | Function to be called when the viewer starts to hide.  |
+| `onClose` | `Function` | Function to be called when the viewer closes/unmounts. |
+
+### Configuration
+
+You can access to this object into inner components through hook [`useConfig`](/docs/base/hooks/config).
+
+| Property                 | Type                                       | Description                                                                                                                            |
+| ------------------------ | ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `animation`              | [`Animation`](/docs/base/models/animation) | The animation type for opening state of viewer.                                                                                        |
+| `duration`               | `number`                                   | The duration of each story in milliseconds by default.                                                                                 |
+| `preview`                | `object`                                   | The configuration for the [preview](/docs/base/preview) component.                                                                     |
+| `preview.mounted`        | `boolean`                                  | Mounts the [preview](/docs/base/preview) on mounting main component.                                                                   |
+| `timer`                  | `object`                                   |                                                                                                                                        |
+| `timer.shouldUseDefault` | `boolean`                                  | Enables/disables default in-built timer. When `false` - use supported third-party timer context to navigate between stories and pages. |
+| `timer.interval`         | `number`                                   |                                                                                                                                        |
+| `viewer`                 | `object`                                   | The configuration for the viewer component.                                                                                            |
+| `viewer.mounted`         | `boolean`                                  | Mounts immediately active viewer on mounting the main component.                                                                       |
+| `viewer.props`           | `React.DialogHTMLAttributes`               | Props for the active viewer component.                                                                                                 |
+| `viewer.story`           | `number`                                   | The index of the [story](/docs/base/story) was been opened only on `mounted = true`.                                                   |
+
+### Global
+
+| Property | Type      | Description         |
+| -------- | --------- | ------------------- |
+| `debug`  | `boolean` | Enables debug mode. |
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+import {
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+
+import "@react-instastories/base/index.css";
+
+export function AppStories() {
+  return (
+    <InstaStories>
+      <Stories>
+        <Story>
+          <Preview>Preview Content</Preview>
+          <Pages>
+            <Page>Page Content</Page>
+          </Pages>
+        </Story>
+      </Stories>
+    </InstaStories>
+  );
+}
+```
+
+## Demo
+
+### Default
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+
+import { Controls } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Preview Content</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+### Should Mount Configuration
+
+import React from "react";
+
+export function ResetState({ state, onChange }) {
+React.useEffect(() => {
+
+return () => state && onChange(!state);
+}, [state]);
+}
+
+export function MountStories() {
+const [shouldMountPreview, setShouldMountPreview] = React.useState(true);
+const [shouldMountViewer, setShouldMountViewer] = React.useState(false);
+
+const handleMountPreview = () => setShouldMountPreview(!shouldMountPreview)
+const handleMountViewer = () => setShouldMountViewer(!shouldMountViewer)
+
+return (
+
+<React.Fragment>
+  <fieldset>
+    <table>
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>Property</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="checkbox"
+              name="should-mount-preview"
+              onChange={handleMountPreview}
+              checked={shouldMountPreview}
+            />
+          </td>
+          <td>
+            <code>config.preview.shouldMount</code>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input
+              type="checkbox"
+              name="should-mount-viewer"
+              onChange={handleMountViewer}
+              checked={shouldMountViewer}
+            />
+          </td>
+          <td>
+            <code>config.viewer.shouldMount</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <InstaStories
+    config={{
+      animation: shouldMountPreview ? "smart" : "linear",
+      preview: { shouldMount: shouldMountPreview },
+      viewer: { shouldMount: shouldMountViewer, story: 0 }
+    }}
+  >
+    <Configurable.Container>
+      <Configurable.Viewer>
+        <Controls.Viewer.Background />
+        <Controls.Viewer.Close />
+      </Configurable.Viewer>
+    </Configurable.Container>
+    <Stories>
+      <Story>
+        <Preview>
+          <h1 className="">Preview Content</h1>
+        </Preview>
+        <Pages>
+          <Page>
+            <h1 className="">Page Content</h1>
+          </Page>
+        </Pages>
+      </Story>
+    </Stories>
+  </InstaStories>
+</React.Fragment>
+) }
+
+<MountStories />
+
+## Debug mode
+
+import { useConfig } from "nextra-theme-docs";
+
+The debug mod will be used for all `InstaStories`, regardless of where `debug: true` was declared.
+
+```tsx copy
+import { config } from "@react-instastories/base";
+
+config.debug = true;
+```
+
+import { config } from "@react-instastories/base";
+
+export function DebugStories() {
+  const [debug, setDebug] = React.useState(config.debug);
+
+React.useEffect(() => {
+config.debug = debug;
+}, [debug]);
+
+React.useEffect(() => {
+return () => {
+config.debug = false;
+};
+}, []);
+
+const handleChange = () => setDebug(!debug);
+
+return (
+
+<React.Fragment>
+  <fieldset>
+    <table>
+      <thead>
+        <tr>
+          <th>State</th>
+          <th>Property</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="checkbox"
+              name="should-mount-preview"
+              onChange={handleChange}
+              checked={debug}
+            />
+          </td>
+          <td>
+            <code>config.debug</code>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </fieldset>
+  <InstaStories config={{ timer: { shouldUseDefault: false } }}>
+    <Configurable.Container>
+      <Configurable.Viewer>
+        <Controls.Viewer.Background />
+        <Controls.Viewer.Close />
+      </Configurable.Viewer>
+    </Configurable.Container>
+    <Stories>
+      <Story>
+        <Preview>
+          <h1 className="">Preview Content</h1>
+        </Preview>
+        <Pages>
+          <Page>
+            <h1 className="">Page Content</h1>
+          </Page>
+        </Pages>
+      </Story>
+    </Stories>
+  </InstaStories>
+</React.Fragment>
+) }
+
+<DebugStories />

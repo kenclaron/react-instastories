@@ -1,0 +1,40 @@
+# useIndexes
+
+## Description
+
+The `useIndexes` hook is a custom React hook designed to provide the current story and page indexes along with a boolean indicating if the current story and page are the ones being viewed.
+This hook is particularly useful in scenarios where you need to track or display the active story and page within a storytelling or slideshow component.
+
+## Return Values
+
+| Property | Type     | Description                                                 |
+| -------- | -------- | ----------------------------------------------------------- |
+| `page`   | `object` | The information about of the page from which it is called.  |
+| `story`  | `object` | The information about of the story from which it is called. |
+
+## Object
+
+| Property  | Type      | Description                                          |
+| --------- | --------- | ---------------------------------------------------- |
+| `current` | `boolean` | Indicates if the current component are being viewed. |
+| `index`   | `number`  | The index of the component from which it is called.  |
+
+```tsx copy
+import { useIndexes } from "@react-instastories/base";
+
+function InnerPageContent() {
+  const { page, story } = useIndexes();
+
+  return (
+    <div>
+      <p>Current Story: {story.index}</p>
+      <p>Current Page: {page.index}</p>
+      <p>
+        {page.current
+          ? "This is the current story and page."
+          : "This is not the current story and page."}
+      </p>
+    </div>
+  );
+}
+```

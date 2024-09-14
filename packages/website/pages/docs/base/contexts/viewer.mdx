@@ -1,0 +1,23 @@
+# useViewerContext
+
+## Description
+
+The `useViewerContext` hook manages the state and behavior of the viewer component.
+It provides a comprehensive set of methods and properties to control the opening, closing, showing, and hiding of the viewer.
+The hook integrates with [animations](/docs/base/models/animation), [transitions](/docs/base/models/steps), and [config](/docs/base/instastories#configuration) to offer a seamless viewing experience.
+
+## Properties
+
+| Property       | Type                                       | Description                                                                                                                                                        |
+| -------------- | ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `animation`    | [`Animation`](/docs/base/models/animation) | Contains the animation-related methods and values.                                                                                                                 |
+| `transition`   | [`Transition`](/docs/base/models/steps)    | Contains the transition-related methods and values.                                                                                                                |
+| `configurable` | [`Configurable`](/docs/base/models/)       | Contains the configurable-related methods and values.                                                                                                              |
+| `mounted`      | `boolean`                                  | Indicates whether the viewer is currently mounted in the DOM.                                                                                                      |
+| `shown`        | `boolean`                                  | Indicates whether the viewer is currently shown.                                                                                                                   |
+| `open`         | `Function`                                 | Method to open the viewer.                                                                                                                                         |
+| `close`        | `Function`                                 | Method to close the viewer.                                                                                                                                        |
+| `onOpen`       | `Function`                                 | Callback function triggered when the viewer opens. If the function returns a `truthy` value, then the function will prevent the viewer component from opening.     |
+| `onShow`       | `Function`                                 | Callback function triggered when the viewer is shown. If the function returns a `truthy` value, then the function will prevent the viewer component from opening.  |
+| `onClose`      | `Function`                                 | Callback function triggered when the viewer closes. If the function returns a `truthy` value, then the function will prevent the viewer component from opening.    |
+| `onHide`       | `Function`                                 | Callback function triggered when the viewer is hidden. If the function returns a `truthy` value, then the function will prevent the viewer component from opening. |

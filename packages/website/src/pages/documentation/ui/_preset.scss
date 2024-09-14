@@ -1,0 +1,11 @@
+.documentation-example-extend-preset {
+  &.instastories-viewer,
+  &.instastories-stories {
+    --website-preset-name: "example";
+  }
+
+  &.instastories-viewer--entering,
+  &.instastories-viewer--entered {
+    background-color: #39f6;
+  }
+}

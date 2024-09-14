@@ -1,0 +1,84 @@
+# Transition
+
+The library allows to track the opening state of a viewer `<dialog>` using JS-steps and CSS-classnames that are automatically assigned to the `<dialog>` container of the viewer for easy interaction by JS or CSS.
+
+## Properties
+
+| Property    | Type                                        | Description                                                             |
+| ----------- | ------------------------------------------- | ----------------------------------------------------------------------- |
+| `storyRef`  | `React.MutableRefObject<HTMLDivElement>`    | The ref object of [story](/docs/base/story).                            |
+| `viewerRef` | `React.MutableRefObject<HTMLDialogElement>` | The ref object of [viewer](/docs/base/instastories).                    |
+| `step`      | [`TransitionStep`](#steps)                  | The configuration settings for the [viewer](/docs/base/instastories).   |
+| `cancel`    | `Function`                                  | Function to cancel the transition (clear step value and set as `null`). |
+
+## viewer
+
+Current step can be accessing by following code with [ViewerContext](/docs/base/contexts/viewer)
+
+## Usage
+
+```tsx copy
+import { useViewerContext } from "@react-instastories/base";
+
+// Component that renders current step as string
+function CurrentStep() {
+  const viewer = useViewerContext();
+
+  return viewer.transition.step; // null or "entering" -> "entered" -> "exiting" -> "exited"
+}
+
+// Examples of usage
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <CurrentStep />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <CurrentStep />
+      </Preview>
+      <Pages>
+        <Page>
+          <CurrentStep />
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>;
+```
+
+## Steps
+
+### Open
+
+When the viewer is opening, the following class names are applied to indicate the state of the viewer:
+
+1. `TransitionStep.Entering` (classname: `.instastories-viewer--entering`)
+
+   - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
+   - This class is applied when the viewer starts to open. You can use this class to define the initial styles or animations for the opening process.
+   - Typically used to set up the starting point for the transition or animation.
+
+2. `TransitionStep.Entered` (classname: `.instastories-viewer--entered`)
+   - This class is applied after the opening animation or transition ends, specifically after the `transitionend` event with `opacity` or any `animationend` event.
+   - Use this class to define the final styles or animations that should be applied once the viewer is fully opened.
+   - This state indicates that the viewer has completed the opening process and is now fully visible.
+
+### Close
+
+When the viewer is closing, the following `classNames` are used to represent the state of the viewer:
+
+1. `TransitionStep.Exiting` (classname: `.instastories-viewer--exiting`)
+
+   - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
+   - This class is applied when the viewer starts to close. It helps in defining the initial styles or animations for the closing process.
+   - Typically used to initiate the closing transition or animation.
+
+2. `TransitionStep.Exited` (classname: `.instastories-viewer--exited`)
+
+   - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
+   - This class is applied after the closing animation or transition ends, specifically after the `transitionend` event with `opacity` or any `animationend` event.
+   - Use this class to define the final styles or animations that should be applied once the viewer is fully closed.
+   - This state indicates that the viewer has completed the closing process and is no longer visible.

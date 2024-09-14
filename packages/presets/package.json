@@ -1,0 +1,45 @@
+{
+  "name": "@react-instastories/presets",
+  "version": "1.0.0",
+  "description": "Style presets for the next generation of React Stories Library.",
+  "author": {
+    "name": "Dmitry Britov",
+    "email": "kenclaron@gmail.com",
+    "url": "https://github.com/kenclaron"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenclaron/react-instastories",
+    "directory": "packages/presets"
+  },
+  "bugs": {
+    "url": "https://github.com/kenclaron/react-instastories/issues"
+  },
+  "engines": {
+    "yarn": ">=3",
+    "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
+  },
+  "scripts": {
+    "start": "sass --watch ./src:./dist",
+    "build": "sass ./src:./dist"
+  },
+  "devDependencies": {
+    "sass": "file:../../node_modules/sass"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "ui",
+    "components",
+    "style",
+    "styles",
+    "presets",
+    "css",
+    "scss",
+    "sass",
+    "library",
+    "microfrontend"
+  ]
+}

@@ -1,0 +1,26 @@
+.separator {
+  display: flex;
+  align-items: center;
+  margin-block: 4em;
+  color: var(--shiki-color-text);
+  text-align: center;
+
+  &::before,
+  &::after {
+    flex: 1;
+    border-bottom: 1px solid
+      color-mix(in srgb, transparent 90%, var(--shiki-color-text));
+    min-width: 1em;
+    content: "";
+  }
+
+  &:not(:empty) {
+    &::before {
+      margin-right: 2em;
+    }
+
+    &::after {
+      margin-left: 2em;
+    }
+  }
+}

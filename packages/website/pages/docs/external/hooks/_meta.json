@@ -1,0 +1,6 @@
+{
+  "indexes": "useIndexes",
+  "interactive": "useInteractive",
+  "media-timer": "useMediaTimer",
+  "keyboard-movement": "useKeyboardMovement"
+}

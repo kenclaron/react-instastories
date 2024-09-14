@@ -1,0 +1,154 @@
+$is-preset-ig-mobile-width: 768px;
+
+.fullstory-action {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  z-index: 10;
+  cursor: pointer;
+  inset: 0;
+  border-radius: 0.5em;
+  background-color: #0009;
+  overflow: hidden;
+  font-size: 1.5em;
+
+  & > picture > img {
+    border-radius: 50%;
+    width: 7em;
+    height: 7em;
+    overflow: hidden;
+  }
+
+  & > div {
+    font-size: 1.75em;
+
+    & > *:first-child {
+      font-weight: bold;
+    }
+  }
+}
+
+.container {
+  display: grid;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr auto auto;
+  place-items: end;
+  z-index: 1;
+  background-color: black;
+  padding: 1em;
+  height: fit-content;
+
+  @media (width >= $is-preset-ig-mobile-width) {
+    background-color: initial;
+  }
+
+  input,
+  button,
+  a {
+    transition: var(--is-preset-ig-transition-smooth);
+  }
+
+  input {
+    border: white 0.075em solid;
+    border-radius: 2em;
+    background-color: transparent;
+    padding: 0.55em 1.5em;
+    width: 100%;
+    height: fit-content;
+    resize: none;
+    font-size: 0.9em;
+  }
+
+  input::placeholder {
+    color: #fffa;
+  }
+
+  input + * {
+    padding-inline-start: 0.5em;
+  }
+
+  & > div {
+    display: flex;
+  }
+
+  a:global(.action-item),
+  button:global(.action-item) {
+    display: inline-block;
+    order: 1;
+    padding: 0.5em;
+    aspect-ratio: 1 / 1;
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 1em;
+    user-select: none;
+
+    &:hover {
+      opacity: 0.6;
+    }
+
+    &[disabled] {
+      opacity: 0.4;
+    }
+  }
+}
+
+.logo {
+  border-radius: 50%;
+}
+
+.background {
+  position: absolute;
+  z-index: -1;
+  filter: brightness(0.75) saturate(0.5);
+  inset: 0 0 4.5em;
+  border-radius: 1em;
+  background-color: black;
+  overflow: hidden;
+
+  & > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  @media (width >= $is-preset-ig-mobile-width) {
+    inset: 0;
+  }
+}
+
+.title,
+.description {
+  transform: rotate(-5deg);
+  border-radius: 0.25em;
+  background-color: white;
+  padding: 0.25em;
+  width: fit-content;
+  height: fit-content;
+  color: black;
+}
+
+.description {
+  margin: 0.5em;
+  padding: 0.75em;
+}
+
+.pause {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline-start: auto;
+  width: 2em;
+  height: 2em;
+
+  & > * {
+    pointer-events: none;
+  }
+}

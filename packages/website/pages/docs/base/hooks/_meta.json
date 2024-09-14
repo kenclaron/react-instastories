@@ -1,0 +1,6 @@
+{
+  "config": "useConfig",
+  "story": "useStory",
+  "page": "usePage",
+  "pagination": "usePagination"
+}

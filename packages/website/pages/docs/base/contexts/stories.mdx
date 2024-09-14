@@ -1,0 +1,23 @@
+# useStoriesContext
+
+## Description
+
+The `useStoriesContext` hook is a React hook designed to manage the state and behavior of stories within a component.
+It handles the navigation between stories, the current story index, and any associated props or child elements.
+This hook is particularly useful for implementing story-like features in applications where users can navigate through different stories.
+
+## Properties
+
+| Property      | Type                                                | Description                                         |
+| ------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `canNext`     | `boolean`                                           | Indicates whether the next story can be shown.      |
+| `canPrevious` | `boolean`                                           | Indicates whether the previous story can be shown.  |
+| `children`    | `React.ReactNode`                                   | The children elements of the stories.               |
+| `config`      | [`StoryConfiguration`](/docs/base/story#properties) | Configuration for the current story.                |
+| `configure`   | `(config: StoryConfiguration) => void`              | Function to update the current story configuration. |
+| `current`     | `number`                                            | The current story index.                            |
+| `length`      | `number`                                            | The total number of stories.                        |
+| `mounted`     | `number`                                            | Indicates that stories context was mounted.         |
+| `next`        | `Function`                                          | Function to show the next story.                    |
+| `previous`    | `Function`                                          | Function to show the previous story.                |
+| `show`        | `(index: number) => void`                           | Function to show a specific story by index.         |

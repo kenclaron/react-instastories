@@ -4,7 +4,29 @@
   "semi": true,
   "tabWidth": 2,
   "bracketSpacing": true,
-  "jsxBracketSameLine": false,
+  "bracketSameLine": false,
   "arrowParens": "always",
-  "trailingComma": "none"
+  "trailingComma": "none",
+  "cssDeclarationSorterOrder": "concentric-css",
+  "cssDeclarationSorterKeepOverrides": false,
+  "plugins": [
+    "prettier-plugin-css-order",
+    "@trivago/prettier-plugin-sort-imports"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "^@react-instastories/(?!.*.(css|less|scss)).*$",
+    "^@react-instastories/.*(.css|.less|.scss)?$",
+    "<THIRD_PARTY_MODULES>",
+    "^(.*)/utilities(.*)$",
+    "^(.*)/types(.*)$",
+    "^(.*)/interfaces(.*)$",
+    "^(.*)/hooks(.*)$",
+    "^(.*)/portals(.*)$",
+    "^(.*)/components(.*)$",
+    "^../(.*)$",
+    "^./(?!.*.(css|less|scss)).*$",
+    "^./(.*)$"
+  ]
 }

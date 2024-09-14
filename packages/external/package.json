@@ -1,0 +1,62 @@
+{
+  "name": "@react-instastories/external",
+  "version": "1.0.0",
+  "description": "External optional components for the next generation of React Stories Library.",
+  "author": {
+    "name": "Dmitry Britov",
+    "email": "kenclaron@gmail.com",
+    "url": "https://github.com/kenclaron"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenclaron/react-instastories",
+    "directory": "packages/external"
+  },
+  "bugs": {
+    "url": "https://github.com/kenclaron/react-instastories/issues"
+  },
+  "engines": {
+    "yarn": ">=3",
+    "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
+  },
+  "source": "src/index.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.module.js",
+  "unpkg": "dist/index.umd.js",
+  "exports": {
+    ".": "./dist/index.modern.js"
+  },
+  "scripts": {
+    "start": "microbundle watch --jsx React.createElement --css-modules \"instastories-[local]\" --no-compress --globals @react-instastories/base=base",
+    "build": "microbundle --jsx React.createElement --css-modules \"instastories-[local]\" --globals @react-instastories/base=base"
+  },
+  "peerDependencies": {
+    "@react-instastories/base": "file:../base/dist",
+    "react-dom": "file:../../node_modules/react-dom",
+    "react": "file:../../node_modules/react"
+  },
+  "devDependencies": {
+    "@types/node": "file:../../node_modules/@types/node",
+    "@types/react-dom": "file:../../node_modules/@types/react-dom",
+    "@types/react": "file:../../node_modules/@types/react",
+    "microbundle": "file:../../node_modules/microbundle/dist",
+    "sass": "file:../../node_modules/sass",
+    "typescript": "file:../../node_modules/typescript"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "zero-dependencies",
+    "library",
+    "react",
+    "ui",
+    "components",
+    "stories",
+    "controls",
+    "events",
+    "hooks",
+    "microfrontend"
+  ]
+}

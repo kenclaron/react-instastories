@@ -1,0 +1,65 @@
+@import "../../../../../base/src/styles/variables";
+@import "../../../../../base/src/styles/mixins";
+
+.viewer:not([data-preset]) {
+  button.button-viewer-control,
+  button.button-stories-control {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    appearance: none;
+    opacity: 0;
+    transition: opacity $time-tick;
+    cursor: pointer;
+    margin: 1em;
+    border: none;
+    border-radius: 50%;
+    background-color: initial;
+    width: 3em;
+    height: 3em;
+    font-size: 1em;
+
+    &:hover {
+      background-color: #00000080;
+    }
+
+    &--previous,
+    &--next {
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &--previous {
+      left: 0;
+    }
+
+    &--next {
+      right: 0;
+    }
+
+    &--close {
+      top: 0;
+      right: 0;
+    }
+  }
+}
+
+.viewer {
+  &--entering:not([data-preset]) button.button-viewer-control,
+  &--entering:not([data-preset]) button.button-stories-control {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &--entered:not([data-preset]) button.button-viewer-control,
+  &--entered:not([data-preset]) button.button-stories-control {
+    opacity: 1;
+  }
+
+  &--exiting:not([data-preset]) button.button-viewer-control,
+  &--exiting:not([data-preset]) button.button-stories-control {
+    opacity: 0;
+    pointer-events: none;
+  }
+}

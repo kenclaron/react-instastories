@@ -1,0 +1,17 @@
+# usePreviewContext
+
+## Description
+
+The `usePreview` hook is a React hook for managing a `Preview` component.
+It provides a set of methods to control the visibility of the preview and handle associated events such as showing, hiding, and clicking the preview.
+This hook is particularly useful for implementing preview features in applications where previews need to be shown or hidden based on user interactions.
+
+## Properties
+
+| Property    | Type                                           | Description                                              |
+| ----------- | ---------------------------------------------- | -------------------------------------------------------- |
+| `element`   | `HTMLElement`                                  | The HTML element associated with the preview.            |
+| `shown`     | `boolean`                                      | The state for the visibility of the `Preview` component. |
+| `hide`      | `(target?: EventTarget & HTMLElement) => void` | Function to hide the `Preview` component.                |
+| `show`      | `Function`                                     | Function to show the `Preview` component.                |
+| `...events` | [`PreviewEvents`](/docs/base/preview#events)   | The events associated with the `Preview` component.      |

@@ -1,0 +1,22 @@
+# usePagesContext
+
+## Description
+
+The `usePagesContext` hook is a React hook designed to manage the state and behavior of pages within a component.
+It handles the navigation between pages, the current page index, and any associated props or child elements.
+This hook is useful for implementing pagination or story-like features in applications.
+
+## Properties
+
+| Property      | Type                                        | Description                                       |
+| ------------- | ------------------------------------------- | ------------------------------------------------- |
+| `canNext`     | `boolean`                                   | Indicates whether the next page can be shown.     |
+| `canPrevious` | `boolean`                                   | Indicates whether the previous page can be shown. |
+| `children`    | `React.ReactNode`                           | The children elements of the pages.               |
+| `current`     | `number`                                    | The current page index.                           |
+| `length`      | `number`                                    | The total number of pages.                        |
+| `mounted`     | `number`                                    | Indicates that pages context was mounted.         |
+| `next`        | `Function`                                  | Function to show the next page or story.          |
+| `previous`    | `Function`                                  | Function to show the previous page or story.      |
+| `props`       | [`PagesProps`](/docs/base/pages#properties) | The props of the pages.                           |
+| `show`        | `(index: number) => void`                   | Function to show a specific page by index.        |

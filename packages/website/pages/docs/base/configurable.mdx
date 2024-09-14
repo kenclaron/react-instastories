@@ -1,0 +1,244 @@
+# Configurable
+
+## Description
+
+This module provides a set of React components designed to configure various sections of a viewer context within your application.
+These components (`Viewer`, `Story`, `Page`, and `Container`) facilitate the configuration of sections and perform necessary side effects when their children or event props change.
+
+## List of components
+
+- `Configurable.Container` - used only to store other `Configurable.Components`
+- `Configurable.Viewer` - all children and events will be applied for viewing.
+- `Configurable.Story` - all children and events will be applied to the current [story](/docs/base/story)
+- `Configurable.Page` - all children and events will be applied to the current [page](/docs/base/page)
+
+## Properties
+
+### Components
+
+| Property   | Type                          | Description                                                    |
+| ---------- | ----------------------------- | -------------------------------------------------------------- |
+| `children` | `React.ReactNode`             | The children elements to be used in the section configuration. |
+| `events`   | `React.FunctionalComponent[]` | Optional event components to be configured in the section.     |
+
+### Story
+
+Extends properties of [common components](#components)
+
+| Property         | Type      | Description                                                                                                                                         |
+| ---------------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mountOnPreload` | `boolean` | Mount components and events for preloaded stories, not just the current story. Make sure your components and events don't conflict with each other. |
+
+### Page
+
+Extends properties of [common components](#components)
+
+| Property         | Type      | Description                                                                                                                                      |
+| ---------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `mountOnPreload` | `boolean` | Mount components and events for preloaded pages, not just the current page. Make sure your components and events don't conflict with each other. |
+
+## Usage
+
+```tsx copy
+<Configurable.Container>
+  <Configurable.Viewer events={events}>{...components}</Configurable.Viewer>
+  <Configurable.Story events={events}>{...components}</Configurable.Story>
+  <Configurable.Page events={events}>{...components}</Configurable.Page>
+</Configurable.Container>
+```
+
+## Demo
+
+### Viewer
+
+```tsx copy
+<Configurable.Container>
+  <Configurable.Viewer
+    events={[
+      Events.Mount.AutoClose,
+      Events.Mount.Interactive,
+      Events.Focus.Timer,
+      Events.Keyboard.Close,
+      Events.Keyboard.Stories
+    ]}
+  >
+    <Controls.Viewer.Background />
+    <Controls.Viewer.Close />
+    <Controls.Stories.Next />
+    <Controls.Stories.Previous />
+    <Preloadable.Stories unloadable next={1} previous={1} />
+    <Preloadable.Pages unloadable next={1} previous={1} />
+  </Configurable.Viewer>
+</Configurable.Container>
+```
+
+Features:
+
+- Click outside story for cause closing viewer
+- See close button of viewer in the upper right corner
+- See next and previous story buttons in opened viewer
+- Press next or previous story button on right/left-sides viewer and cause transition between stories
+- See in DOM-tree preloaded stories with pages
+- Wait until all stories are viewed for the device to close them
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events, Preloadable } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer
+      events={[
+        Events.Mount.AutoClose,
+        Events.Mount.Interactive,
+        Events.Focus.Timer,
+        Events.Keyboard.Close,
+        Events.Keyboard.Stories
+      ]}
+    >
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+      <Preloadable.Stories unloadable next={1} previous={1} />
+      <Preloadable.Pages unloadable next={1} previous={1} />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Story #1</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #1 Page #1</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #2</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #2 Page #1</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #3</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #3 Page #1</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+### Story
+
+```tsx copy
+<Configurable.Container>
+  <Configurable.Story
+    events={[
+      Events.Pointer.Timer,
+      Events.Pointer.Close,
+      Events.Pointer.Stories
+    ]}
+  >
+    <Controls.Pages.Next />
+    <Controls.Pages.Previous />
+    <Controls.Indicator interactive threshold={1000} />
+  </Configurable.Story>
+</Configurable.Container>
+```
+
+Features:
+
+- Press and hold the cursor over a story to pause the timer
+- Press and move the cursor down to close the viewer.
+- Press and move the cursor left or right to move between stories.
+- Click on the left or right border of a story to move between pages within a story.
+- See count of pages indicator above story
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Story
+      events={[
+        Events.Pointer.Timer,
+        Events.Pointer.Close,
+        Events.Pointer.Stories
+      ]}
+    >
+      <Controls.Pages.Next style={{ backgroundColor: "#0f04" }} />
+      <Controls.Pages.Previous style={{ backgroundColor: "#00f4" }} />
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Story #1</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #1 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #1 Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Story #1 Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #2</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #2 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #2 Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Story #2 Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #3</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #3 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #3 Page #2</h1>
+        </Page>
+        <Page>
+          <div>
+            <h1>Story #3 Page #3</h1>
+            <p>Note: Press and move the cursor down to close the viewer</p>
+          </div>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

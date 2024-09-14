@@ -1,0 +1,444 @@
+/**
+ * Recommended config of InstaStories component:
+ *     animation: "smart"
+ *     duration: 6000
+ * 
+ * Optional supported config parameters of InstaStories component:
+ *     animation: "linear"
+ *     animation: "immediately"
+ *     duration: 0
+ *     duration: Infinity
+ * 
+ * Optional supported external components:
+ *     Controls.Indicator
+ *     Controls.Viewer.Background
+ *     Controls.Viewer.Close
+ *     Preloadable.Stories
+ *
+ * * This stylesheet inspired by Telegram* Web A Version (July '24).
+ *
+ * * This project is not affilated with Telegram FZ-LLC.
+ * * There is no connection between @react-instastories/presets and company.
+ */
+$is-preset-tg-mobile-width: 600px;
+
+[data-preset="instastories-preset-tg"].instastories-viewer,
+[data-preset="instastories-preset-tg"].instastories-stories {
+  --is-preset-name: "tg";
+  --is-preset-tg-background: #000e;
+  --is-preset-tg-transition-all: all 0.4s ease;
+  --is-preset-tg-transition-opacity: opacity 0.2s ease;
+  --is-preset-tg-transition-transformation: transform 0.4s ease, width 0.4s ease,
+    height 0.4s ease, left 0.4s ease, top 0.4s ease, opacity 0.2s ease;
+}
+
+[data-preset="instastories-preset-tg"].instastories-viewer {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  transition: var(--is-preset-tg-transition-all);
+  inset: 0;
+  background-color: black;
+  padding: 0.5em;
+  width: 100%;
+  height: 100%;
+
+  @media (width >= $is-preset-tg-mobile-width) {
+    background-color: var(--is-preset-tg-background);
+    padding: initial;
+  }
+
+  body:has(&) {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  &--smart,
+  &--linear {
+    opacity: 0;
+  }
+
+  &--smart:is(&--exiting),
+  &--linear:is(&--exiting) {
+    opacity: 0;
+  }
+
+  &--smart:is(&--entering),
+  &--linear:is(&--entering),
+  &--smart:is(&--entered),
+  &--linear:is(&--entered) {
+    opacity: 1;
+  }
+
+  &--exiting .instastories-viewer-content {
+    .instastories-story:has(
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ),
+    .instastories-story + .instastories-story--disabled {
+      position: fixed !important;
+      top: 50% !important;
+      left: 50% !important;
+      opacity: 0;
+      width: min(47.85dvh, 80dvw) !important;
+      height: min(85dvh, 142dvw) !important;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        transition:
+          var(--is-preset-tg-transition-opacity),
+          transform calc(infinity * 1s) ease !important;
+      }
+    }
+
+    .instastories-story:has(
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ) {
+      transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%) !important;
+    }
+
+    .instastories-story + .instastories-story--disabled {
+      transform: scale(0.4) translate(calc(50% + 8em + 0.75em), -125%) !important;
+    }
+  }
+
+  .instastories-viewer-content {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 100em;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    .instastories-story:has(
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ) {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .instastories-story + .instastories-story--disabled {
+      opacity: 0;
+      z-index: -1;
+    }
+
+    .instastories-story:not(.instastories-story--disabled)
+      + .instastories-story--disabled {
+      z-index: 1;
+    }
+
+    @media (width >= $is-preset-tg-mobile-width) {
+      left: initial;
+      padding-block: 2.5em;
+
+      .instastories-story:has(
+          ~ .instastories-story:not(.instastories-story--disabled)
+        ) {
+        transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%);
+        opacity: 1;
+        transition: var(--is-preset-tg-transition-all);
+      }
+
+      .instastories-story + .instastories-story--disabled {
+        transform: scale(0.4) translate(calc(50% + 8em + 0.75em), -125%);
+        opacity: 1;
+        transition: var(--is-preset-tg-transition-all);
+      }
+    }
+  }
+
+  &--smart:not(&--entered) {
+    .instastories-viewer-content .instastories-story--disabled {
+      opacity: 0;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        opacity: 0;
+      }
+    }
+  }
+
+  .instastories-story {
+    display: flex;
+    position: absolute;
+    top: calc(50% - 1.75em);
+    left: 50%;
+    flex-direction: column-reverse;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    z-index: 5;
+    backface-visibility: hidden;
+    transition: var(--is-preset-tg-transition-transformation) 0.1s;
+    width: 100%;
+    height: calc(100% - 3.5em);
+    pointer-events: all;
+    color: white;
+
+    @media (width >= $is-preset-tg-mobile-width) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, calc(-50% - 2em));
+      transition: var(--is-preset-tg-transition-all);
+      width: min(47.85dvh, 80dvw);
+      min-width: 5em;
+      max-width: initial;
+      height: min(85dvh, 142dvw);
+      min-height: 14.2em;
+
+      &--disabled {
+        opacity: 0;
+        pointer-events: all;
+      }
+    }
+
+    &--disabled {
+      opacity: 0;
+      transition: var(--is-preset-tg-transition-transformation);
+      pointer-events: none;
+    }
+
+    & > .instastories-button-viewer-control--close {
+      display: initial;
+      opacity: 1;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        display: none;
+      }
+    }
+  }
+
+  .instastories-pages {
+    border-radius: 1em;
+    height: 100%;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      border-radius: 1em;
+      background: linear-gradient(
+        180deg,
+        color-mix(in srgb, var(--is-preset-tg-background), transparent 50%) 0%,
+        transparent 25%,
+        transparent 100%
+      );
+      pointer-events: none;
+      content: "";
+    }
+  }
+
+  .instastories-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 1.5em 1em;
+    height: 100%;
+    overflow: hidden auto;
+    color: white;
+    user-select: none;
+
+    &::before {
+      position: absolute;
+      top: 0;
+      bottom: 5.5em;
+      z-index: -1;
+      background-color: #212121;
+      content: "";
+    }
+
+    & a {
+      color: white;
+      text-decoration-line: underline;
+    }
+
+    & > address {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
+      z-index: 1;
+      margin-inline-end: 2em;
+      margin-block: 1em 0;
+      font-style: normal;
+      line-height: 1.5em;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        margin-inline-end: initial;
+      }
+
+      & > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      & > picture,
+      & > img {
+        width: 2em;
+        min-width: 2em;
+        max-width: 2em;
+        height: 2em;
+        min-height: 2em;
+        max-height: 2em;
+      }
+
+      & > time {
+        opacity: 0.6;
+      }
+    }
+
+    & > h1 {
+      font-weight: bold;
+      font-size: 1.5em;
+      line-height: 1.333em;
+    }
+
+    & > p {
+      margin-block-start: 1em;
+    }
+
+    & > .instastories-button-viewer-control--close {
+      display: initial;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        display: none;
+      }
+    }
+  }
+
+  .instastories-viewer-background {
+    position: fixed;
+    z-index: -1;
+    cursor: initial;
+    inset: 0;
+  }
+
+  .instastories-button-viewer-control {
+    &--close {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      opacity: 0.5;
+      z-index: 1;
+      transition: var(--is-preset-tg-transition-opacity);
+      margin: 2.625em 1em;
+      border-radius: 50%;
+      width: 2.75em;
+      height: 2.75em;
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        display: flex;
+        margin: 1em;
+
+        &:hover,
+        &:focus {
+          opacity: initial;
+          background-color: #fff1;
+        }
+      }
+    }
+  }
+
+  .instastories-button-stories-control {
+    &--next,
+    &--previous {
+      display: none;
+
+      &:hover > button {
+        opacity: 1;
+      }
+
+      & > button {
+        display: flex;
+        opacity: 0.2;
+        transition: var(--is-preset-tg-transition-opacity);
+        padding: 0.5em;
+        height: fit-content;
+        overflow: hidden;
+
+        & > svg {
+          border-radius: 50%;
+          background-color: #fff;
+        }
+      }
+
+      @media (width >= $is-preset-tg-mobile-width) {
+        display: flex;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        align-items: center;
+      }
+    }
+
+    &--previous {
+      left: -3em;
+    }
+
+    &--next {
+      right: -3em;
+    }
+  }
+
+  .instastories-indicator-container {
+    position: absolute;
+    top: 0;
+    border-collapse: initial;
+    padding: 1.25em 1em 0;
+    width: 100%;
+
+    .instastories-indicator {
+      padding: 0;
+      font-size: 0.125em;
+      line-height: 0;
+
+      & > button {
+        position: relative;
+        background-color: #ffffff47;
+        width: 100%;
+        height: 1em;
+      }
+
+      & .instastories-indicator-bar {
+        position: relative;
+        transition: width 0.1s ease 0s;
+        background-color: #fffffff5;
+        width: 100%;
+        height: 1em;
+      }
+    }
+  }
+}
+
+[data-preset="instastories-preset-tg"].instastories-stories {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.625rem;
+  margin-block: 1em;
+  width: fit-content;
+
+  .instastories-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: var(--is-preset-tg-transition-all);
+    width: 5em;
+    min-height: 4.75em;
+    font-weight: 600;
+    font-size: 0.75em;
+
+    & > p {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    & > *:not(:first-child) {
+      margin-top: 0.3333em;
+    }
+  }
+}

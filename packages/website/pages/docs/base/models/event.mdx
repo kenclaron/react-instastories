@@ -1,0 +1,132 @@
+# Event
+
+`Events` can use into any [Configurable](/docs/base/configurable) component, that be used with each parent component (for example, `Event` was be mounted with each story if pass `Event` to [Configurable.Story](/docs/base/configurable))
+
+The `EventProps` interface extends React's `PropsWithChildren` and includes an optional property for specifying the `HTMLElement` to which the event is attached.
+It is designed to be used with components that need to handle events. It extends `React.PropsWithChildren`, allowing you to pass children to the component along with event-related properties.
+
+By understanding the `Event` and `EventProps` and its properties, you can effectively handle events in your components, ensuring that event listeners are correctly managed and attached to the appropriate elements.
+
+## Properties
+
+| Property   | Type                    | Description                                                                                                                                                               |
+| ---------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `element`  | `HTMLElement` or `null` | This property specifies the HTML element that can be accessed on current usable level of components (ex. `HTMLDialogElement` of viewer, if use in `Configurable.Viewer`). |
+| `children` | `React.ReactNode`       | All children on this level of components (ex. all `children` of viewer, if use in `Configurable.Viewer`).                                                                 |
+
+## Create
+
+```tsx copy
+import { type EventProps } from "@react-instastories/base";
+
+import React from "react";
+
+function CustomEvent({ children }: EventProps) {
+  // Any own inner content of event for logic
+  const viewer = useViewerContext();
+
+  React.useEffect(() => {
+    const handleEvent = (event: Event) => console.debug(event);
+
+    if (viewer.shown) {
+      window.addEventListener("blur", handleEvent);
+      window.addEventListener("focus", handleEvent);
+    } else {
+      window.removeEventListener("blur", handleEvent);
+      window.removeEventListener("focus", handleEvent);
+    }
+
+    return () => {
+      window.removeEventListener("blur", handleEvent);
+      window.removeEventListener("focus", handleEvent);
+    };
+  }, [viewer.shown]);
+
+  // Add any own children, change or pass default children prop
+  return children;
+}
+```
+
+## Usage
+
+```tsx copy
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[CustomEvent]} />
+  </Configurable.Container>
+  {...stories}
+</InstaStories>
+```
+
+## Demo
+
+### Keyboard Event
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Keyboard.Close]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Keyboard Escape Event</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <div>
+            <h1>Keyboard Escape Event</h1>
+            <p>Click Escape key and this viewer was been closed.</p>
+          </div>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+### Pointer Event
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+    <Configurable.Story events={[Events.Pointer.Close]} />
+  </Configurable.Container>
+  <Stories>
+    <Story style={{ userSelect: "none" }}>
+      <Preview>
+        <h1>Pointer Close Event</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <div>
+            <h1>Pointer Close Event</h1>
+            <p>
+              Press on story and move pointer to bottom for move story container
+              by Y-axis and unpress pointer when story was been in bottom
+              position for close this story and viewer.
+            </p>
+          </div>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

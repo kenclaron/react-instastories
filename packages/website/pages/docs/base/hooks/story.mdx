@@ -1,0 +1,31 @@
+# Hook useStory
+
+## Description
+
+The `useStory` hook is a custom React hook that provides access to the current story context within your application.
+It uses the `StoryContext` to supply story-specific information, such as the `HTMLElement` associated with the story and the index of the story.
+This hook is particularly useful for components that need to be aware of their position or associated element within a story-based paginated interface.
+
+## Usage
+
+To use the `useStory` hook, import it into your component and call it. The hook returns an object containing the current story's `HTMLElement` and index.
+
+```tsx copy
+import { useStory } from "@react-instastories/base";
+
+import React from "react";
+
+function InnerStoryContent() {
+  const story = useStory();
+
+  React.useEffect(() => console.debug(story), [story]);
+
+  return (
+    <div>
+      <h1>Story Information</h1>
+      <p>Story Index: {story.index}</p>
+      <p>Story Id Element: {story.element?.id}</p>
+    </div>
+  );
+}
+```

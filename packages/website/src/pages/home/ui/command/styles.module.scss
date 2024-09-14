@@ -1,0 +1,18 @@
+@import "../../../../app/ui/system";
+
+.icon {
+  max-width: 1.5em;
+}
+
+:global(.dark) button.action-copy,
+:global(.light) button.action-copy {
+  transition: background-color $time-tick ease-in-out;
+
+  &--success {
+    background-color: var(--shiki-color-ansi-bright-green-dim);
+  }
+
+  &--error {
+    background-color: var(--shiki-color-ansi-bright-red-dim);
+  }
+}

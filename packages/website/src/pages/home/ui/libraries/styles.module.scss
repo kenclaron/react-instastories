@@ -1,0 +1,27 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  justify-items: center;
+  gap: 1.5em;
+
+  @media (width >= 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (width >= 1280px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  & > li {
+    &,
+    & > button {
+      width: 100%;
+    }
+
+    @media (width >= 640px) and (width <= 1279px) {
+      &:first-child:has(:last-of-type:nth-of-type(even)) {
+        grid-column: 1 / 3;
+      }
+    }
+  }
+}

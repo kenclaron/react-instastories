@@ -1,0 +1,192 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+@keyframes hideout {
+  0%,
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes smart-showout {
+  0%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes linear-showout {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.viewer:not([data-preset]) {
+  .viewer-content {
+    .story {
+      &--disabled {
+        pointer-events: none;
+      }
+    }
+  }
+
+  .story:has(~ .story:not(.story--disabled)) {
+    transform: translate(-50%, -50%);
+
+    @media only screen and (width >= $media-mobile-width) {
+      transform: scale(0.75) translate(calc(-183.3% - 1em), -66.6%);
+    }
+  }
+
+  .story + .story--disabled {
+    transform: translate(-50%, -50%);
+
+    @media only screen and (width >= $media-mobile-width) {
+      transform: scale(0.75) translate(calc(50% + 1em), -66.6%);
+    }
+  }
+}
+
+.viewer:not([data-preset]) .story {
+  @include center;
+
+  position: fixed;
+  transition:
+    all ($time-tick * 3) ease,
+    opacity ($time-tick * 2) ease;
+  aspect-ratio: initial;
+  width: 100dvw;
+  max-width: 100dvw;
+  height: 100dvh;
+  max-height: 100dvh;
+  overflow: hidden;
+
+  &--disabled {
+    opacity: 0;
+    background-color: red;
+    pointer-events: none;
+  }
+
+  @media only screen and (width >= $media-mobile-width) {
+    top: 50%;
+    left: 50%;
+    border-radius: 0.5em;
+    width: 54vh;
+    max-width: calc(100vw - 10em);
+    height: calc(81vh);
+    max-height: calc(140vw - 10em);
+  }
+}
+
+.viewer {
+  &:not(&--smart, &--linear):not([data-preset]) {
+    .story {
+      opacity: 0;
+    }
+  }
+
+  &--linear:not(&--entered, &--exiting, &--exited):not([data-preset]),
+  &--linear:not(&--entering, &--exiting, &--exited):not([data-preset]) {
+    .story {
+      animation-duration: $time-tick * 3;
+      animation-name: linear-showout;
+    }
+  }
+
+  &--smart:not(&--entered, &--exiting, &--exited):not([data-preset]) {
+    .story {
+      &:not(&--disabled) {
+        animation-duration: $time-tick * 4;
+        animation-name: smart-showout;
+      }
+    }
+  }
+
+  &--entering:not([data-preset]) {
+    .story {
+      &--disabled {
+        animation-name: initial;
+      }
+    }
+  }
+
+  &--entering:not(&--smart, &--linear):not([data-preset]),
+  &--entered:not(&--smart, &--linear):not([data-preset]) {
+    .story {
+      opacity: 1;
+    }
+  }
+
+  &--entered:not([data-preset]) {
+    .story {
+      transition:
+        all ($time-tick * 0) ease,
+        transform ($time-tick * 3) ease,
+        opacity $time-tick;
+      min-width: 10em;
+      min-height: 15em;
+
+      &--disabled {
+        z-index: -1;
+      }
+
+      @media only screen and (width >= $media-mobile-width) {
+        transition:
+          all ($time-tick * 0) ease,
+          transform ($time-tick * 3) ease,
+          opacity $time-tick;
+      }
+    }
+  }
+
+  &--exiting:not(&--smart):not([data-preset]) {
+    .story {
+      opacity: 0;
+    }
+  }
+
+  &:not(&--entering, &--entered):is(&--smart):not([data-preset]),
+  &--exiting:is(&--smart) {
+    .story {
+      border-radius: 0.75em;
+    }
+  }
+}
+
+.viewer:not([data-preset]).viewer--exiting.viewer--smart
+  .story:not(.story--disabled) {
+  animation-duration: $time-tick * 4;
+  animation-fill-mode: forwards;
+  animation-name: hideout;
+  width: 0;
+  height: 0;
+}
+
+@media only screen and (width >= $media-mobile-width) {
+  .viewer:not([data-preset]) {
+    .viewer--exiting.viewer--smart .story:not(.story--disabled) {
+      animation-duration: $time-tick * 4;
+      animation-fill-mode: forwards;
+      animation-name: hideout;
+      width: 0;
+      height: 0;
+    }
+
+    .viewer--exited.viewer--smart .story {
+      width: 0;
+      height: 0;
+    }
+
+    .viewer--exiting.viewer--smart .story {
+      opacity: 0;
+    }
+  }
+}

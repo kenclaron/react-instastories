@@ -1,0 +1,84 @@
+# Indicator
+
+## Description
+
+The `Indicator` component is a React component designed to display a pagination indicator for a series of items.
+It leverages external context from `@react-instastories/base` to manage its state and behavior.
+This component is particularly useful for scenarios where you need to visually represent the progress or state of multiple items, such as in a slideshow or a story format.
+
+## Properties
+
+### Components
+
+| Property      | Type                   | Description                                                                                                                                 |
+| ------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `interactive` | `boolean`              | Enables is interactive mode of the indicator (by default, `false`).                                                                         |
+| `threshold`   | `number`               | The time value controls the delay in milliseconds before an action is performed once the indicator is completely full (by default, `1000`). |
+| `...props`    | `React.HTMLAttributes` | Standard HTML Element attributes.                                                                                                           |
+
+## Usage
+
+```tsx copy
+import { Configurable } from "@react-instastories/base";
+import { Controls } from "@react-instastories/external";
+
+function AppStories() {
+  return (
+    <Configurable.Container>
+      <Configurable.Story>
+        <Controls.Indicator interactive threshold={1000} />
+      </Configurable.Story>
+    </Configurable.Container>
+  );
+}
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator
+        interactive
+        threshold={1000}
+        style={{ backgroundColor: "rgba(255, 0, 0, 0.5)" }}
+      />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Story</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

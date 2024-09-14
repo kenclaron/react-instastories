@@ -1,0 +1,90 @@
+@import "../../../../../../app/ui/system";
+
+dialog:global(.instastories-viewer):not([data-preset]) .text-content {
+  & h1,
+  & p {
+    transition-duration: $time-tick * 4;
+    transition-property: font-size;
+    transition-timing-function: ease;
+  }
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+
+  & > ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 1.25em;
+  }
+
+  & h1,
+  & p {
+    color: black;
+    line-height: 125%;
+  }
+
+  & h1 {
+    font-weight: bolder;
+  }
+
+  & p {
+    font-style: normal;
+    font-weight: 400;
+  }
+}
+
+button:global(.instastories-preview):not([data-preset]),
+dialog:global(.instastories-viewer):not([data-preset]),
+dialog:global(.instastories-viewer--exiting):not([data-preset]) {
+  :global(.instastories-page) .text-content {
+    z-index: 5;
+  }
+
+  .text-content {
+    & h1 {
+      @media (width >= 768px) {
+        font-size: 1.25em;
+      }
+
+      @media (width >= 920px) {
+        font-size: 1.5em;
+      }
+
+      @media (width >= 1280px) {
+        font-size: 1.75em;
+      }
+    }
+
+    & p {
+      font-size: 0.875em;
+
+      @media (width >= 768px) {
+        font-size: 1em;
+      }
+
+      @media (width >= 920px) {
+        font-size: 1.1em;
+      }
+
+      @media (width >= 1280px) {
+        font-size: 1.25em;
+      }
+    }
+  }
+}
+
+dialog:global(.instastories-viewer--entering):not([data-preset]),
+dialog:global(.instastories-viewer--entered):not([data-preset]) {
+  .text-content {
+    & h1 {
+      font-size: 1.75em;
+    }
+
+    & p {
+      font-size: 1.25em;
+    }
+  }
+}

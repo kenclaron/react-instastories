@@ -1,0 +1,118 @@
+import { Tabs } from "nextra/components";
+
+import { COMMON } from "../../src/shared";
+
+# How to install?
+
+To install, you'll need to use a JavaScript package manager.
+The documentation below will provide examples for two popular package managers, NPM and Yarn.
+
+## Package Managers
+
+<Tabs items={["NPM", "Yarn"]}>
+
+  <Tabs.Tab>
+
+    You can add **{COMMON.name}** to your project using **npm**:
+
+    <Tabs items={["All", "Base", "External", "Presets"]}>
+
+      <Tabs.Tab>
+        You can install all **{COMMON.name}** libraries:
+
+        ```bash copy
+        npm install @react-instastories/base @react-instastories/external @react-instastories/presets
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install only necessary components, hooks, models:
+
+        ```bash copy
+        npm install @react-instastories/base
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install library with custom components, events, hooks:
+
+        ```bash copy
+        npm install @react-instastories/base @react-instastories/external
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install library with presets of customization:
+
+        ```bash copy
+        npm install @react-instastories/base @react-instastories/presets
+        ```
+
+      </Tabs.Tab>
+
+    </Tabs>
+
+  </Tabs.Tab>
+
+  <Tabs.Tab>
+    You can add **{COMMON.name}** to your project using **yarn**:
+
+    <Tabs items={["All", "Base", "External", "Presets"]}>
+
+      <Tabs.Tab>
+        You can install all **{COMMON.name}** libraries:
+
+        ```bash copy
+        yarn add @react-instastories/base @react-instastories/external @react-instastories/presets
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install only necessary components, hooks, models:
+
+        ```bash copy
+        yarn add @react-instastories/base
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install library with custom components, events, hooks:
+
+        ```bash copy
+        yarn add @react-instastories/base @react-instastories/external
+        ```
+
+      </Tabs.Tab>
+
+      <Tabs.Tab>
+        You can install library with presets of customization:
+
+        ```bash copy
+        yarn add @react-instastories/base @react-instastories/presets
+        ```
+
+      </Tabs.Tab>
+
+    </Tabs>
+
+  </Tabs.Tab>
+
+</Tabs>
+
+## Peer dependencies
+
+It is important to note that **{COMMON.name}** expects the following peer dependencies because it is React library:
+
+- `react`
+- `react-dom`
+
+Ensure that these are installed and at the correct version in your project.
+
+## Zero dependency
+
+**{COMMON.name}** is a _zero-dependency_ React library. This means it does not rely on any other third-party packages, making it lightweight and easy to integrate into any project.

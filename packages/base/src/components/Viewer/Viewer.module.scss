@@ -1,0 +1,45 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.viewer:not([data-preset]) {
+  @include fullscreen;
+
+  display: block;
+  appearance: none;
+  z-index: 10;
+  transition: background-color $time-tick ease;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  font-size: 1em;
+
+  body:has(&) {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  & > .viewer-content {
+    @include fullscreen;
+
+    pointer-events: none;
+
+    & > * {
+      pointer-events: initial;
+    }
+  }
+}
+
+.viewer {
+  &--smart:not([data-preset]) {
+    position: fixed;
+  }
+
+  &--linear:not([data-preset]) {
+    position: fixed;
+  }
+
+  &--entering:not([data-preset]),
+  &--entered:not([data-preset]) {
+    background-color: #0007;
+  }
+}

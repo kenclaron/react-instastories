@@ -1,0 +1,8 @@
+.card {
+  margin-top: 1em;
+  border-radius: 0.75em;
+  background-color: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 0% / 5%
+  );
+  padding: 1em;
+}

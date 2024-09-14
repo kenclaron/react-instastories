@@ -1,0 +1,90 @@
+/* Stylesheet for buttons and links as buttons behaviour */
+
+.light,
+.dark {
+  --button-background-color-hover: color-mix(
+    in srgb,
+    var(--shiki-color-text) 5%,
+    #777 10%
+  );
+  --button-background-color-active: color-mix(
+    in srgb,
+    var(--shiki-color-text) 10%,
+    #777 10%
+  );
+  --button-background-color-focus: color-mix(
+    in srgb,
+    var(--shiki-color-text) 12.5%,
+    #777 15%
+  );
+}
+
+.light {
+  --action-item-color--primary: white;
+  --action-item-color--secondary: #345;
+  --action-item-color--tertiary: #345;
+  --action-item-background-color--primary: #345;
+  --action-item-background-color--secondary: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 35% / 20%
+  );
+  --action-item-background-color--tertiary: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 0% / 5%
+  );
+}
+
+.dark {
+  --action-item-color--primary: black;
+  --action-item-color--secondary: #e2e8f0;
+  --action-item-color--tertiary: #e2e8f0;
+  --action-item-background-color--primary: #e2e8f0;
+  --action-item-background-color--secondary: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 35% / 20%
+  );
+  --action-item-background-color--tertiary: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 100% / 10%
+  );
+}
+
+body a.action-item,
+body button.action-item {
+  position: relative;
+  border-radius: 0.75em;
+  padding-inline: 1em;
+  padding-block: 0.875em;
+  min-width: fit-content;
+  overflow: hidden;
+  color: var(--action-color);
+  font-weight: bold;
+  user-select: text;
+  text-decoration: none;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration-line: none;
+  }
+
+  & > * {
+    pointer-events: none;
+  }
+
+  &--rounded {
+    border-radius: 50%;
+  }
+
+  &--primary {
+    border-color: transparent;
+    background-color: var(--action-item-background-color--primary);
+    color: var(--action-item-color--primary);
+  }
+
+  &--secondary {
+    background-color: var(--action-item-background-color--secondary);
+    color: var(--action-item-color--secondary);
+  }
+
+  &--tertiary {
+    background-color: var(--action-item-background-color--tertiary);
+    color: var(--action-item-color--tertiary);
+  }
+}

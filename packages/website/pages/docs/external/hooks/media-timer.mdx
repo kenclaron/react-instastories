@@ -1,0 +1,102 @@
+# useMediaTimer
+
+## Description
+
+The `useMediaTimer` hook is designed to manage an internal timer from `@react-instastories/base` using HTML media controls.
+This hook allows synchronization between a media element (like a `<video>` or `<audio>`) and the [base timer context](/docs/base/contexts/timer), ensuring that the media playback state and the timer state are kept in sync.
+Hook returns [`TimerContext`](/docs/base/contexts/timer) values.
+
+## Usage
+
+```tsx copy
+import { useMediaTimer } from "@react-instastories/external";
+
+import React from "react";
+
+function MediaContent() {
+  const ref = React.useRef<HTMLVideoElement>(null);
+  const timer = useMediaTimer(ref.current);
+
+  return (
+    <video ref={ref} autoPlay={true}>
+      <source src="path/to/video.mp3" type="video/mp4" />
+    </video>
+  );
+}
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import { Link } from "nextra-theme-docs";
+
+import { Card, MediaContent } from "../../../../src/entities";
+import { getSourceByBasePath } from "../../../../src/shared";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose, Events.Focus.Timer]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+    <Configurable.Story events={[Events.Pointer.Timer]}>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <video>
+          <source src={getSourceByBasePath("/docs/video.webm")} type="video/webm" />
+        </video>
+        <p>Story with video and music media</p>
+      </Preview>
+      <Pages>
+        <Page>
+          <MediaContent src={getSourceByBasePath("/docs/video.webm")} />
+          <div style={{ width: "100%" }}>
+            <h1>Page Content</h1>
+            <p>Variants for pause this story:</p>
+            <p>Press pointer on story</p>
+            <p>Unfocus browser window</p>
+            <Card>
+              <p>
+                <span>Media provided by </span>
+                <Link
+                  href="https://open.spotify.com/artist/6qhpjoy6wFdgWIYFMwjZvU"
+                  style={{ display: "inline", color: "#cfcfff" }}
+                >
+                  <span>poyavluszavtra</span>
+                </Link>
+              </p>
+
+              <p>
+                <span>Music: </span>
+                <Link
+                  href="https://open.spotify.com/track/3G8Oc2SpZJGBNN7VYlKHV1"
+                  style={{ display: "inline", color: "#cfcfff" }}
+                >
+                  <span>poyavluszavtra - phonenumbers</span>
+                </Link>
+              </p>
+            </Card>
+          </div>
+        </Page>
+      </Pages>
+    </Story>
+
+  </Stories>
+</InstaStories>

@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
+    "strict": true,
     "outDir": "dist",
     "module": "esnext",
+    "target": "ESNext",
     "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
+    "jsxFactory": "React.createElement",
     "sourceMap": true,
     "declaration": true,
     "esModuleInterop": true,
@@ -16,6 +19,5 @@
     "noUnusedParameters": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "example"]
+  "exclude": ["node_modules", "packages/**/dist"]
 }

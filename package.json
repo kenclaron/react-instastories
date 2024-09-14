@@ -1,68 +1,75 @@
 {
   "name": "react-instastories",
-  "version": "0.1.0",
-  "description": "The next generation of React Instastories library",
-  "private": true,
+  "version": "1.0.0",
+  "description": "The next generation of React Stories Library",
   "author": {
-    "email": "da.britov@yandex.ru",
-    "name": "Dmitry Britov"
+    "name": "Dmitry Britov",
+    "email": "kenclaron@gmail.com",
+    "url": "https://github.com/kenclaron"
   },
-  "license": "UNLICENSED",
-  "repository": "kenclaron/react-instastories",
-  "main": "dist/index.js",
-  "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenclaron/react-instastories"
+  },
+  "bugs": {
+    "url": "https://github.com/kenclaron/react-instastories/issues"
+  },
   "engines": {
-    "node": ">=10"
+    "yarn": ">=3",
+    "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
   },
   "scripts": {
-    "build": "microbundle-crl --no-compress --format modern,cjs",
-    "start": "microbundle-crl watch --no-compress --format modern,cjs",
-    "prepare": "run-s build",
-    "test": "run-s test:unit test:lint test:build",
-    "test:build": "run-s build",
-    "test:lint": "eslint .",
-    "test:unit": "cross-env CI=1 react-scripts test --env=jsdom",
-    "test:watch": "react-scripts test --env=jsdom",
-    "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "postinstall": "npm run install:base && npm run install:external && npm run install:presets && npm run install:website",
+    "install:base": "cd packages/base && npm install",
+    "install:external": "cd packages/external && npm install",
+    "install:presets": "cd packages/presets && npm install",
+    "install:website": "cd packages/website && npm install",
+    "start": "run-p start:base start:external start:presets start:website",
+    "start:base": "cd packages/base && npm start",
+    "start:external": "cd packages/external && npm start",
+    "start:presets": "cd packages/presets && npm start",
+    "start:website": "cd packages/website && npm run dev",
+    "test": "run-s test:lint test:prettier test:stylelint",
+    "test:lint": "eslint . --fix",
+    "test:prettier": "prettier . --write",
+    "test:stylelint": "stylelint \"**/*.scss\" --fix",
+    "build": "run-s build:base build:external build:presets build:website",
+    "build:base": "cd packages/base && npm run build",
+    "build:external": "cd packages/external && npm run build",
+    "build:presets": "cd packages/presets && npm run build",
+    "build:website": "cd packages/website && npm run build",
+    "serve:website": "cd packages/website && npm start",
+    "predeploy": "npm install && npm run build",
+    "deploy": "gh-pages -d packages/website/out"
   },
   "peerDependencies": {
-    "react": "^18.0.0"
+    "react": "^16.14.0 || ^17 || ^18 || ^19",
+    "react-dom": "^16.14.0 || ^17 || ^18 || ^19"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "@trivago/prettier-plugin-sort-imports": "^4.1.1",
-    "@types/jest": "^29.4.0",
-    "@types/node": "^18.15.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.54.1",
-    "@typescript-eslint/parser": "^5.54.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.7.0",
-    "eslint-config-standard": "^17.0.0",
-    "eslint-config-standard-react": "^13.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
-    "eslint-plugin-standard": "^5.0.0",
-    "gh-pages": "^2.2.0",
-    "microbundle-crl": "^0.13.11",
+    "@eslint/eslintrc": "^3.1.0",
+    "@eslint/js": "^9.10.0",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/node": "^22.5.4",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-react": "^7.35.2",
+    "eslint-plugin-security": "^3.0.1",
+    "gh-pages": "^6.1.1",
+    "globals": "^15.9.0",
+    "microbundle": "^0.15.1",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.8.4",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "^5.0.1",
-    "sass": "^1.58.3",
-    "typescript": "^5.0.1-rc"
-  },
-  "files": [
-    "dist"
-  ]
+    "prettier": "^3.3.3",
+    "prettier-plugin-css-order": "^2.1.2",
+    "sass": "^1.78.0",
+    "stylelint": "^16.9.0",
+    "stylelint-config-standard-scss": "^13.1.0",
+    "stylelint-prettier": "^5.0.2",
+    "typescript": "^5.5.4"
+  }
 }

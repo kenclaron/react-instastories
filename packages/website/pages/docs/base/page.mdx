@@ -1,0 +1,126 @@
+# Page
+
+## Description
+
+The `Page` component represents a single page in a [story](/docs/base/story).
+It manages its visibility, transitions, and interactions.
+This component leverages multiple hooks to handle context values and states, ensuring seamless integration and functionality within the [story](/docs/base/story).
+
+## Properties
+
+### Component
+
+| Prop        | Type                     | Description                                                       |
+| ----------- | ------------------------ | ----------------------------------------------------------------- |
+| `duration`  | `number`                 | The duration of the page.                                         |
+| `preload`   | `boolean`                | Whether to preload the page.                                      |
+| `priority`  | `boolean`                | Whether the page has priority for visibility if page is disabled. |
+| `as`        | `React.ElementType`      | Specifies the component type to render (by default, `article`)    |
+| `...events` | [`StoryEvents`](#events) | Optional callback events for component.                           |
+| `...props`  | `React.HTMLAttributes`   | Standard HTML Element attributes.                                 |
+
+### Events
+
+| Event     | Type       | Description                                           |
+| --------- | ---------- | ----------------------------------------------------- |
+| `onOpen`  | `Function` | Function to be called when the page opens in viewer.  |
+| `onClose` | `Function` | Function to be called when the page closes in viewer. |
+
+## States
+
+1. Priority (classname: `.instastories-page--priority`)
+2. Disabled (classname: `.instastories-page--disabled`)
+   - Component sets `aria-disabled` to `true`, by default.
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`useTimerContext`](/docs/base/contexts/timer)
+- [`useStoriesContext`](/docs/base/contexts/stories)
+- [`usePagesContext`](/docs/base/contexts/pages)
+- [`useStory`](/docs/base/hooks/story)
+- [`usePage`](/docs/base/hooks/page)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+<Page
+  preload
+  priority
+  duration={20000}
+  onOpen={() => console.debug("Page opened!")}
+  onClose={() => console.debug("Page closed!")}
+>
+  <h1>Page Content</h1>
+</Page>
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+import BackgroundImage from "../../../public/docs/image.svg";
+import { Image, hueRotate } from "../../../src/shared";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+        />
+        <h1>Story with demo pages</h1>
+      </Preview>
+      <Pages>
+        <Page duration={30000}>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #1 with duration 30 seconds</h1>
+        </Page>
+        <Page preload>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #2 with preload state</h1>
+        </Page>
+        <Page preload priority>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(2), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #3 with preload and priority state</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

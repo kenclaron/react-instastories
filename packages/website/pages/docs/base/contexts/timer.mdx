@@ -1,0 +1,86 @@
+# useTimerContext
+
+## Description
+
+The `useTimerContext` hook is a React hook designed to manage an internal timer.
+This timer can be used to handle expiration times for various components within your application.
+It provides a range of functionalities such as starting, pausing, stopping, and resetting the timer.
+The hook also allows you to change the expiration time and manage the manual state of the timer.
+
+## Properties
+
+| Property      | Type                                          | Description                                              |
+| ------------- | --------------------------------------------- | -------------------------------------------------------- |
+| `active`      | `boolean`                                     | Indicates whether the timer is active.                   |
+| `manually`    | `boolean`                                     | Indicates whether the timer is in manual state.          |
+| `expired`     | `boolean`                                     | Indicates whether the timer has expired.                 |
+| `duration`    | `number`                                      | The expiration time in milliseconds.                     |
+| `time`        | `number`                                      | The current time value.                                  |
+| `stop`        | `Function`                                    | Stops the timer and resets the time to 0.                |
+| `pause`       | `Function`                                    | Pauses the timer.                                        |
+| `start`       | `Function`                                    | Starts the timer.                                        |
+| `reset`       | `Function`                                    | Resets the timer by stopping and then starting it again. |
+| `change`      | `(expires: number, counter?: number) => void` | Changes the expiration time of the timer.                |
+| `setManually` | `(manually: boolean) => void`                 | Changes the manual state of the timer.                   |
+| `setWaiting`  | `(waiting: boolean) => void`                  | Changes the waiting state of the timer.                  |
+
+## Usage
+
+```tsx copy
+import { useTimerContext } from "@react-instastories/base";
+
+function useTimerStringify() {
+  const timer = useTimerContext();
+
+  return JSON.stringify(timer);
+}
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story,
+  useTimerContext
+} from "@react-instastories/base";
+import { Controls } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+export function TimerStringify() {
+const timer = useTimerContext();
+
+return JSON.stringify(timer);
+}
+
+<InstaStories config={{ animation: "smart" }}>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Story with Timer information</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <div style={{ width: "100%" }}>
+            <h1>Timer Information</h1>
+            <code style={{ overflowWrap: "break-word" }}>
+              <TimerStringify />
+            </code>
+          </div>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

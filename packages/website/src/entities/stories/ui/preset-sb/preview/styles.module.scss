@@ -1,0 +1,45 @@
+.thumbnail {
+  --is-preset-sb-thumbnail-border-color: #3b6;
+  --is-preset-sb-thumbnail-border-color--viewed: #7878784d;
+
+  position: relative;
+  margin: 1em;
+  border-radius: 50%;
+  width: 10em;
+  height: 10em;
+
+  & > img {
+    border-radius: 50%;
+  }
+
+  &::after {
+    position: absolute;
+    top: -0.4em;
+    left: -0.4em;
+    border-width: 0.2em;
+    border-style: solid;
+    border-color: var(--is-preset-sb-thumbnail-border-color);
+    border-radius: 50%;
+    width: calc(100% + 0.8em);
+    height: calc(100% + 0.8em);
+    content: "";
+  }
+
+  &--viewed {
+    & > img {
+      opacity: 0.5;
+    }
+
+    &::after {
+      border-color: var(--is-preset-sb-thumbnail-border-color--viewed);
+    }
+  }
+}
+
+.title {
+  opacity: 1;
+
+  &--viewed {
+    opacity: 0.6;
+  }
+}

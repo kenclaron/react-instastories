@@ -1,0 +1,15 @@
+.scroller {
+  position: relative;
+  left: -1.5em;
+  width: calc(100% + 3em);
+  overflow-x: auto;
+
+  & > .container {
+    left: 0;
+    align-items: center;
+    padding-inline: max(env(safe-area-inset-right), 1.5rem);
+    padding-block: 0;
+    min-width: fit-content;
+    height: fit-content;
+  }
+}

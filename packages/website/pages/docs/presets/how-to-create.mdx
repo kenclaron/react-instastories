@@ -1,0 +1,272 @@
+import { Tabs } from "nextra/components";
+
+# How to create own style presets
+
+## Base Library Class Names
+
+### Viewer
+
+- `instastories-viewer` contains `instastories-viewer-content`
+
+  - `instastories-viewer--smart`
+  - `instastories-viewer--linear`
+  - `instastories-viewer--entering`
+  - `instastories-viewer--entered`
+  - `instastories-viewer--exiting`
+  - `instastories-viewer--exited`
+
+- `instastories-viewer-content` contains `instastories-story`
+
+### Stories
+
+- `instastories-stories` contains `instastories-preview`
+- `instastories-story` contains `instastories-pages`
+  - `instastories-story--disabled`
+
+### Pages
+
+- `instastories-pages` contains `instastories-page`
+- `instastories-page`
+  - `instastories-page--disabled`
+  - `instastories-page--priority`
+
+### Preview
+
+- `instastories-preview`
+  - `instastories-preview--expanded`
+
+## Usage
+
+### Presets From Scratch
+
+<Tabs items={["CSS", "SCSS", "LESS"]}>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.css"
+        [data-preset="instastories-preset-example"].instastories-viewer,
+        [data-preset="instastories-preset-example"].instastories-stories, {
+          --is-preset-name: "example";
+        }
+
+        [data-preset="instastories-preset-example"].instastories-viewer--entering,
+        [data-preset="instastories-preset-example"].instastories-viewer--entered {
+          background-color: #39f6;
+        }
+
+        /* ... any other CSS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.css";
+
+        <InstaStories config={{ preset: "instastories-preset-example" }}>
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.scss"
+        [data-preset="instastories-preset-example"] {
+          &.instastories-viewer,
+          &.instastories-stories {
+            --is-preset-name: "example";
+          }
+
+          &.instastories-viewer--entering,
+          &.instastories-viewer--entered {
+            background-color: #39f6;
+          }
+        }
+
+        /* ... any other SCSS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.scss";
+
+        <InstaStories config={{ preset: "instastories-preset-example" }}>
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.less"
+        [data-preset="instastories-preset-example"] {
+          &.instastories-viewer,
+          &.instastories-stories {
+            --is-preset-name: "example";
+          }
+
+          &.instastories-viewer--entering,
+          &.instastories-viewer--entered {
+            background-color: #39f6;
+          }
+        }
+
+        /* ... any other LESS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.less";
+
+        <InstaStories config={{ preset: "instastories-preset-example" }}>
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+</Tabs>
+
+### Extends Standard Presets
+
+<Tabs items={["CSS", "SCSS", "LESS"]}>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.css"
+        .documentation-example.instastories-viewer,
+        .documentation-example.instastories-stories {
+          --is-preset-name: "example";
+        }
+
+        .documentation-example.instastories-viewer--entering,
+        .documentation-example.instastories-viewer--entered {
+          background-color: #39f6;
+        }
+
+        /* ... any other CSS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.css";
+
+        <InstaStories
+          config={{
+            preview: { props: { className: "documentation-example" } },
+            viewer: { props: { className: "documentation-example" } }
+          }}
+        >
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.scss"
+        .documentation-example {
+          &.instastories-viewer,
+          &.instastories-stories {
+            --is-preset-name: "example";
+          }
+
+          &.instastories-viewer--entering,
+          &.instastories-viewer--entered {
+            background-color: #39f6;
+          }
+        }
+
+        /* ... any other SCSS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.scss";
+
+        <InstaStories
+          config={{
+            preview: { props: { className: "documentation-example" } },
+            viewer: { props: { className: "documentation-example" } }
+          }}
+        >
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+    <Tabs.Tab>
+
+        ```css copy filename="path/to/file/example.less"
+        .documentation-example {
+          &.instastories-viewer,
+          &.instastories-stories {
+            --is-preset-name: "example";
+          }
+
+          &.instastories-viewer--entering,
+          &.instastories-viewer--entered {
+            background-color: #39f6;
+          }
+        }
+
+        /* ... any other LESS stylesheet ... */
+        ```
+
+        ```tsx copy
+        import "path/to/file/example.less";
+
+        <InstaStories
+          config={{
+            preview: { props: { className: "documentation-example" } },
+            viewer: { props: { className: "documentation-example" } }
+          }}
+        >
+          {...content}
+        </InstaStories>;
+        ```
+
+    </Tabs.Tab>
+
+</Tabs>
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+import "../../../src/pages/documentation/ui/_preset.scss";
+
+<InstaStories
+  config={{
+    viewer: { props: { className: "documentation-example-extend-preset" } }
+  }}
+>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Preview Content</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

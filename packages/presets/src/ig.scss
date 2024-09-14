@@ -1,0 +1,385 @@
+/**
+ * Recommended config of InstaStories component:
+ *     animation: "immediately"
+ *     duration: 5000
+ * 
+ * Optional supported config parameters of InstaStories component:
+ *     animation: "smart"
+ *     animation: "linear"
+ *     duration: 0
+ *     duration: Infinity
+ *
+ * Optional supported external components:
+ *     Controls.Indicator
+ *     Controls.Stories.Next
+ *     Controls.Stories.Previous
+ *     Controls.Viewer.Close
+ *     Preloadable.Stories
+ *     
+ * * This stylesheet inspired by Instagram* Public Website (July '24).
+ *
+ * * This project is not affilated with Meta Platforms Inc.
+ * * There is no connection between @react-instastories/presets and company.
+ */
+$is-preset-ig-mobile-width: 768px;
+
+[data-preset="instastories-preset-ig"].instastories-viewer,
+[data-preset="instastories-preset-ig"].instastories-stories {
+  --is-preset-name: "ig";
+  --is-preset-ig-background: #1a1a1a;
+  --is-preset-ig-transition-all: all 0.4s ease;
+  --is-preset-ig-transition-opacity: opacity 0.1s ease;
+}
+
+[data-preset="instastories-preset-ig"].instastories-viewer {
+  display: block;
+  position: fixed;
+  z-index: 10;
+  transition: var(--is-preset-ig-transition-all);
+  inset: 0;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+
+  @media (width >= $is-preset-ig-mobile-width) {
+    background-color: var(--is-preset-ig-background);
+  }
+
+  body:has(&) {
+    overflow: hidden;
+    touch-action: none;
+  }
+
+  &--smart,
+  &--linear {
+    opacity: 0;
+  }
+
+  &--smart:is(&--exiting),
+  &--linear:is(&--exiting) {
+    opacity: 0;
+  }
+
+  &--smart:is(&--entering),
+  &--linear:is(&--entering),
+  &--smart:is(&--entered),
+  &--linear:is(&--entered) {
+    opacity: 1;
+  }
+
+  .instastories-viewer-content {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    transform-style: preserve-3d;
+    perspective: 100em;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+
+    .instastories-story:has(
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ) {
+      transform: rotateY(-90deg) translate(0%, 0%)
+        translateZ(calc(47.85dvh / 2));
+      opacity: 0;
+      z-index: -1;
+      transition: all 0.225s ease;
+
+      @media (aspect-ratio <= 1 / 1.775) {
+        transform: rotateY(-90deg) translate(0%, -50%)
+          translateZ(calc(47.85dvh / 2));
+      }
+    }
+
+    .instastories-story + .instastories-story--disabled {
+      transform: rotateY(90deg) translate(0%, 0%) translateZ(calc(47.85dvh / 2));
+      opacity: 0;
+      z-index: -1;
+      transition: all 0.225s ease;
+
+      @media (aspect-ratio <= 1 / 1.775) {
+        transform: rotateY(90deg) translate(0%, -50%)
+          translateZ(calc(47.85dvh / 2));
+      }
+    }
+
+    .instastories-story:not(.instastories-story--disabled)
+      + .instastories-story--disabled {
+      z-index: 1;
+    }
+
+    @media (width >= $is-preset-ig-mobile-width) {
+      padding-block: 2.5em;
+
+      .instastories-story:has(
+          ~ .instastories-story:not(.instastories-story--disabled)
+        ) {
+        transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%);
+        opacity: 1;
+        transition: var(--is-preset-ig-transition-all);
+      }
+
+      .instastories-story + .instastories-story--disabled {
+        transform: scale(0.4) translate(calc(50% + 8em + 0.75em), -125%);
+        opacity: 1;
+        transition: var(--is-preset-ig-transition-all);
+      }
+    }
+  }
+
+  &--smart:not(&--entered) {
+    .instastories-viewer-content .instastories-story--disabled {
+      opacity: 0;
+
+      @media (width >= $is-preset-ig-mobile-width) {
+        opacity: 0;
+      }
+    }
+  }
+
+  .instastories-story {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: calc(50% - (min(56.35dvh, 100dvw)) / 2);
+    flex-direction: column-reverse;
+    transform: none;
+    z-index: 0;
+    backface-visibility: hidden;
+    transition: var(--is-preset-ig-transition-all);
+    width: min(56.35dvh, min(100dvw, 100%));
+    max-width: min(56.35dvh, min(100dvw, 100%));
+    height: 100%;
+    pointer-events: all;
+    color: white;
+
+    @media (aspect-ratio <= 1 / 1.775) {
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      height: 177.5dvw;
+    }
+
+    @media (width >= $is-preset-ig-mobile-width) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: min(47.85dvh, 80dvw);
+      min-width: 5em;
+      max-width: initial;
+      height: min(85dvh, 142dvw);
+      min-height: 14.2em;
+    }
+  }
+
+  .instastories-pages {
+    border-radius: 1em;
+    height: 100%;
+    overflow: hidden;
+
+    &::after {
+      position: absolute;
+      inset: 0;
+      border-radius: 1em;
+      background: linear-gradient(
+        0deg,
+        color-mix(in srgb, var(--is-preset-ig-background), transparent 50%) 0%,
+        transparent 25%,
+        transparent 75%,
+        color-mix(in srgb, var(--is-preset-ig-background), transparent 50%) 100%
+      );
+      pointer-events: none;
+      content: "";
+    }
+  }
+
+  .instastories-page {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 1em 2em;
+    height: 100%;
+    user-select: none;
+
+    & > address {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 0.5em;
+      z-index: 1;
+      margin-inline-end: 2em;
+      margin-block: 1em 2em;
+      font-style: normal;
+      line-height: 1.5em;
+
+      @media (width >= $is-preset-ig-mobile-width) {
+        margin-inline-end: initial;
+      }
+
+      & > * {
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      & > picture,
+      & > img {
+        width: 2em;
+        min-width: 2em;
+        max-width: 2em;
+        height: 2em;
+        min-height: 2em;
+        max-height: 2em;
+      }
+
+      & > time {
+        opacity: 0.6;
+      }
+    }
+
+    & > h1 {
+      font-weight: bold;
+      font-size: 1.5em;
+      line-height: 1.333em;
+    }
+
+    & > p {
+      margin-block-start: 1em;
+    }
+
+    & > *:nth-last-child(2) {
+      flex-grow: 1;
+    }
+
+    & > .instastories-button-viewer-control--close {
+      display: initial;
+
+      @media (width >= $is-preset-ig-mobile-width) {
+        display: none;
+      }
+    }
+  }
+
+  .instastories-viewer-background {
+    position: fixed;
+    z-index: -1;
+    inset: 0;
+  }
+
+  .instastories-button-viewer-control {
+    &--close {
+      display: none;
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 1;
+      margin: 2.5em 1em;
+      width: 2em;
+      height: 2em;
+
+      @media (width >= $is-preset-ig-mobile-width) {
+        display: initial;
+        margin: 1em;
+      }
+    }
+  }
+
+  .instastories-button-stories-control {
+    &--next,
+    &--previous {
+      display: none;
+
+      &:hover > button {
+        opacity: 1;
+      }
+
+      & > button {
+        display: flex;
+        opacity: 0.2;
+        transition: var(--is-preset-ig-transition-opacity);
+        padding: 0.5em;
+        height: fit-content;
+        overflow: hidden;
+
+        & > svg {
+          border-radius: 50%;
+          background-color: #fff;
+        }
+      }
+
+      @media (width >= $is-preset-ig-mobile-width) {
+        display: flex;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        align-items: center;
+      }
+    }
+
+    &--previous {
+      left: -3em;
+    }
+
+    &--next {
+      right: -3em;
+    }
+  }
+
+  .instastories-indicator-container {
+    position: absolute;
+    top: 0;
+    border-collapse: initial;
+    padding: 1.25em 1em 0;
+    width: 100%;
+
+    .instastories-indicator {
+      padding: 0;
+      font-size: 0.125em;
+      line-height: 0;
+
+      & > button {
+        position: relative;
+        background-color: #ffffff47;
+        width: 100%;
+        height: 1em;
+      }
+
+      & .instastories-indicator-bar {
+        position: relative;
+        transition: width 0.1s ease 0s;
+        background-color: #fffffff5;
+        width: 100%;
+        height: 1em;
+      }
+    }
+  }
+}
+
+[data-preset="instastories-preset-ig"].instastories-stories {
+  display: flex;
+  padding-block: 0.5em;
+
+  .instastories-preview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-inline: 1.25em;
+    padding-block: 0.833em;
+    width: 9.5em;
+    min-height: 4.75em;
+    color: #475b62;
+    font-weight: 600;
+    font-size: 0.75em;
+
+    & > p {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    & > *:not(:first-child) {
+      margin-top: 1em;
+    }
+  }
+}

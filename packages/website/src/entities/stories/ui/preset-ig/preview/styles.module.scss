@@ -1,0 +1,50 @@
+:global(.light) .thumbnail {
+  --is-preset-tg-preview-background-color: white;
+}
+
+:global(.dark) .thumbnail {
+  --is-preset-tg-preview-background-color: #111;
+}
+
+.thumbnail {
+  position: relative;
+  border-radius: 50%;
+  width: 6.425em;
+  height: 6.425em;
+
+  & > img {
+    border-radius: 50%;
+  }
+
+  &::after {
+    position: absolute;
+    top: -7.5%;
+    left: -7.5%;
+    z-index: -1;
+    border: 0.2em solid transparent;
+    border-radius: 50%;
+    background:
+      linear-gradient(var(--is-preset-tg-preview-background-color) 0 0)
+        padding-box,
+      linear-gradient(45deg, #f3b, #ca3) border-box;
+    padding: 15%;
+    width: 115%;
+    height: 115%;
+    content: "";
+  }
+
+  &--viewed {
+    &::after {
+      border-color: #70707077;
+      background: initial;
+    }
+  }
+}
+
+.title {
+  opacity: 1;
+
+  &--viewed {
+    opacity: 0.6;
+  }
+}

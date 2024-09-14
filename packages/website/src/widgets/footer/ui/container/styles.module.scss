@@ -1,0 +1,49 @@
+.container {
+  display: grid;
+  grid-template:
+    "a" auto
+    "b" auto
+    "c" auto / 1fr;
+  gap: 2em;
+
+  @media (width >= 640px) {
+    grid-template:
+      "a b" auto
+      "c c" auto / 1fr 1fr;
+  }
+
+  @media (width >= 920px) {
+    grid-template: "c a b" auto / 1fr 1fr 1fr;
+  }
+
+  & > div {
+    height: 100%;
+
+    &:first-child {
+      grid-area: a;
+    }
+
+    &:nth-child(2) {
+      grid-area: b;
+    }
+
+    &:last-child {
+      grid-area: c;
+    }
+
+    & > h3 {
+      margin-block-end: 0.5em;
+      font-weight: bold;
+      font-size: 1em;
+    }
+  }
+
+  & ul > li {
+    height: 1.725em;
+    font-size: 0.875em;
+
+    & > * {
+      vertical-align: middle;
+    }
+  }
+}

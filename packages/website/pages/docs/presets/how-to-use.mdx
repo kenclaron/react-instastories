@@ -1,0 +1,98 @@
+import { Tabs } from "nextra/components";
+
+# How to use story presets
+
+## Standard preset
+
+Be careful that standard styles can be used with the `InstaStories` component only until it has the `config.preset` with any value (exclude, `undefined`).
+It's made so that you can use both presets created based on standard styles (for example, for minimal changes of stylesheet for only your app), or use presets created completely from scratch (for example, full custom presets).
+
+```tsx copy
+// default stylesheet for base components
+import "@react-instastories/base/index.css";
+// default stylesheet for external components
+import "@react-instastories/external/index.css";
+```
+
+```tsx copy
+// uses default styles imported just above
+<InstaStories>{...stories}</InstaStories>
+```
+
+```tsx copy
+// uses default styles imported just above
+<InstaStories
+  config={{
+    viewer: { props: { className: "any-class-name-viewer" } },
+    preview: { props: { className: "any-class-name-preview" } }
+  }}
+>
+  {...stories}
+</InstaStories>
+```
+
+```tsx copy
+// disables the use of styles imported just above
+<InstaStories config={{ preset: "instastories-preset-name" }}>
+  {...stories}
+</InstaStories>
+```
+
+## Preparation
+
+Before you start using style presets, make sure you have a preset file (`.css`, `.scss`, `.less` or whatever file format your project uses for styles), [create your own preset file](/docs/styles/how-to-create), or install prepared presets using the command:
+
+<Tabs items={["NPM", "Yarn"]}>
+
+    <Tabs.Tab>
+    ```bash copy
+    npm install @react-instastories/base @react-instastories/presets
+    ```
+    </Tabs.Tab>
+
+    <Tabs.Tab>
+    ```bash copy
+    yarn add @react-instastories/base @react-instastories/presets
+    ```
+    </Tabs.Tab>
+
+</Tabs>
+
+## Usage
+
+```tsx copy
+import {
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+
+// ... or another stylesheet preset that contains [data-preset="{name}"] selector ...
+import "@react-instastories/presets/tg.css";
+
+function AppStories() {
+  return (
+    <InstaStories
+      config={{
+        preset: "instastories-preset-tg" // ... the name of the preset contained in the CSS file above ...
+      }}
+    >
+      <Stories>
+        <Story>
+          <Preview>Preview Content</Preview>
+          <Pages>
+            <Page>Page Content</Page>
+          </Pages>
+        </Story>
+      </Stories>
+    </InstaStories>
+  );
+}
+```
+
+## Showcase
+
+See in-app solution with presets is available on [the home page in the showcase section](/#showcase).

@@ -1,0 +1,144 @@
+@import "../../../../app/ui/system";
+
+.container {
+  display: flex;
+  position: relative;
+  left: -1.5em;
+  align-items: center;
+  width: calc(100% + 3em);
+  height: 15em;
+  overflow: auto;
+  overflow-y: hidden;
+
+  @media (width >= 640px) {
+    height: initial;
+  }
+
+  .stories {
+    position: absolute;
+    left: 0;
+    align-items: center;
+    padding-inline: max(env(safe-area-inset-right), 1.5em);
+    padding-block: 1em;
+    font-size: 1em;
+
+    @media (width >= 640px) {
+      position: relative;
+      left: initial;
+      justify-content: center;
+      padding-block: 4em 1em;
+      width: 100%;
+    }
+
+    @media (width >= 920px) {
+      padding-block-start: 6em;
+    }
+
+    @media (width >= 1280px) {
+      padding-block-start: 6em;
+    }
+
+    @media (width >= 1420px) {
+      padding-block: 6em 3em;
+    }
+
+    & > button:global(.instastories-preview) {
+      display: flex;
+      justify-content: space-between;
+      border-radius: 1em;
+      background-color: white;
+      padding: 1em;
+      height: 16em;
+
+      &:hover,
+      &:active {
+        outline: none;
+      }
+
+      & > * {
+        color: black;
+      }
+
+      @media (width >= 640px) {
+        height: 22em;
+      }
+
+      @media (width >= 768px) {
+        border-radius: 1.25em;
+        padding: 1.25em;
+        height: 25em;
+      }
+
+      @media (width >= 920px) {
+        height: 30em;
+      }
+
+      @media (width >= 1280px) {
+        border-radius: 2em;
+        padding: 2em;
+        height: 45em;
+      }
+
+      @media (width >= 1420px) and (height >= 65em) {
+        height: 48em;
+      }
+
+      &.primary {
+        @media (width >= 640px) {
+          height: 25em;
+        }
+
+        @media (width >= 768px) {
+          height: 30em;
+        }
+
+        @media (width >= 920px) {
+          height: 38.5em;
+        }
+
+        @media (width >= 1280px) {
+          height: 55em;
+        }
+
+        @media (width >= 1420px) and (height >= 65em) {
+          height: 58em;
+        }
+      }
+    }
+  }
+}
+
+:global(.dark) .container .stories > button {
+  background-color: #fff8;
+  color: black;
+
+  &:hover {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        var(--button-background-color-hover) 100%,
+        black 10%
+      );
+    }
+  }
+
+  &:focus {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        var(--button-background-color-focus) 100%,
+        black 10%
+      );
+    }
+  }
+
+  &:active {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        var(--button-background-color-active) 100%,
+        black 10%
+      );
+    }
+  }
+}

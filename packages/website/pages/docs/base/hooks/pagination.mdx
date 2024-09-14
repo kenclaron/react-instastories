@@ -1,0 +1,64 @@
+# Hook usePagination
+
+## Description
+
+The `usePagination` hook is a React hook designed to provide an easy way to manage pagination between `React.ReactNode` elements.
+It helps in handling the navigation between different elements and provides useful properties and events for pagination control.
+This hook returns a [`Pagination`](#returns) object, which contains information about the current pagination state, and functions to change the current element index.
+
+## Properties
+
+### Returns
+
+The `Pagination` interface provides the following properties:
+
+| Property      | Type                      | Description                                                                                   |
+| ------------- | ------------------------- | --------------------------------------------------------------------------------------------- |
+| `canNext`     | `boolean`                 | Indicates if there has a next element.                                                        |
+| `canPrevious` | `boolean`                 | Indicates if there has a previous element.                                                    |
+| `current`     | `number`                  | The current element index.                                                                    |
+| `length`      | `number`                  | The total number of elements based on the children nodes.                                     |
+| `change`      | `(index: number) => void` | Function to change the current element by index. Takes a index number of item as an argument. |
+
+### Component Events
+
+The `PaginationEvents` interface provides the following events that can be used in other components (by default, [stories](/docs/base/stories) and [pages](/docs/base/pages)) for handling pagination actions:
+
+| Event        | Type                      | Description                                                                                                                                                                       |
+| ------------ | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onPaginate` | `(index: number) => void` | Function to be called when the element changes. Provides the new index. If the function returns a `truthy` value, then the function will prevent change action.                   |
+| `onNext`     | `(index: number) => void` | Function to be called when moving to the next element. Provides the new index. If the function returns a `truthy` value, then the function will prevent open next action.         |
+| `onPrevious` | `(index: number) => void` | Function to be called when moving to the previous element. Provides the new index. If the function returns a `truthy` value, then the function will prevent open previous action. |
+
+## Usage
+
+To use the `usePagination` hook, simply import it into your component and call it with the necessary children nodes.
+The hook will return the [`Pagination`](#returns) object, which can be used to manage the pagination state.
+
+### Basic Example
+
+```tsx copy
+import { usePagination } from "@react-instastories/base";
+
+import React from "react";
+
+function CustomPaginationComponent({ children }) {
+  const { canNext, canPrevious, current, length, change } =
+    usePagination(children);
+
+  return (
+    <div>
+      <button onClick={() => change(current - 1)} disabled={!canPrevious}>
+        Previous
+      </button>
+      <div>{React.Children.toArray(children)[current]}</div>
+      <button onClick={() => change(current + 1)} disabled={!canNext}>
+        Next
+      </button>
+      <p>
+        Current {current + 1} of {length}
+      </p>
+    </div>
+  );
+}
+```

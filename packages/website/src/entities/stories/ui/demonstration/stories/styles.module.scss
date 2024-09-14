@@ -1,0 +1,225 @@
+@import "../../../../../app/ui/system";
+
+dialog:global(.instastories-viewer) {
+  article:global(.instastories-page).demonstration {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    justify-content: space-between;
+    transition-duration:
+      $time-tick,
+      $time-tick * 6;
+    transition-property: padding, opacity;
+    transition-timing-function: ease;
+    background-color: white;
+    aspect-ratio: 2/3;
+    width: 100%;
+    font-size: 0.75em;
+    user-select: none;
+
+    & > * {
+      position: initial;
+      opacity: initial;
+      padding: initial;
+      color: black;
+    }
+
+    & > .background {
+      position: absolute;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer),
+dialog:global(.instastories-viewer--exiting) {
+  .demonstration {
+    padding: 1em;
+
+    @media (width >= 768px) {
+      padding: 1.25em;
+    }
+
+    @media (width >= 1280px) {
+      padding: 2em;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer--entering),
+dialog:global(.instastories-viewer--entered) {
+  .demonstration {
+    padding: 2em;
+
+    .story-container-buttons {
+      opacity: 0;
+      transition-duration:
+        $time-tick * 4,
+        $time-tick * 2 !important;
+      transition-property: max-height, opacity !important;
+    }
+
+    .instastories-viewer--entered .story-container-buttons {
+      opacity: 1 !important;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer) .demonstration .background,
+button:global(.instastories-preview).demonstration .background {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+
+  &-item {
+    display: none;
+    position: absolute;
+    filter: blur(4em);
+    border-radius: 50%;
+    aspect-ratio: 1 / 1;
+
+    @media (width >= 640px) {
+      display: initial;
+    }
+
+    @media (width >= 768px) {
+      filter: blur(5em);
+    }
+
+    @media (width >= 920px) {
+      filter: blur(7.5em);
+    }
+
+    @media (width >= 1280px) {
+      filter: blur(10em);
+    }
+  }
+}
+
+dialog:global(.instastories-viewer) .demonstration--summary .background,
+button:global(.instastories-preview).demonstration--summary .background {
+  background-color: #abc3ff;
+
+  &-item {
+    &:nth-child(1) {
+      top: 0;
+      right: 0;
+      transform: translate(25%, -33%);
+      z-index: 1;
+      background-color: #cdd9ff;
+      width: 150%;
+    }
+
+    &:nth-child(2) {
+      right: 0;
+      bottom: 0;
+      transform: translate(55%, 65%);
+      z-index: 2;
+      background-color: #abc3ff;
+      width: 250%;
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      transform: translate(-55%, 20%);
+      z-index: 3;
+      background-color: #a1ffdb;
+      width: 150%;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer) .demonstration--basic .background,
+button:global(.instastories-preview).demonstration--basic .background {
+  background-color: #bfadff;
+
+  &-item {
+    &:nth-child(1) {
+      top: 0;
+      left: 0;
+      transform: translate(-75%, -35%);
+      z-index: 1;
+      background-color: #bfebff;
+      width: 150%;
+    }
+
+    &:nth-child(2) {
+      top: 0;
+      right: 0;
+      transform: translate(12.5%, 25%);
+      z-index: 2;
+      background-color: #abc3ff;
+      width: 250%;
+
+      @media (width >= 640px) {
+        transform: translate(12.5%, 26%);
+      }
+    }
+
+    &:nth-child(3) {
+      bottom: 0;
+      left: 0;
+      transform: translate(10%, -25%);
+      z-index: 3;
+      background-color: #ffbadd;
+      width: 150%;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer) .demonstration--external .background,
+button:global(.instastories-preview).demonstration--external .background {
+  background-color: #ffbadd;
+
+  &-item {
+    &:nth-child(1) {
+      top: 0;
+      left: 0;
+      transform: translate(-57.5%, -25%);
+      z-index: 3;
+      background-color: #ffbadd;
+      width: 150%;
+
+      @media (width >= 640px) {
+        transform: translate(-55%, -20.5%);
+      }
+    }
+
+    &:nth-child(2) {
+      bottom: 0;
+      left: 0;
+      transform: translate(-85%, 70%);
+      z-index: 2;
+      background-color: #abc3ff;
+      width: 250%;
+
+      @media (width >= 640px) {
+        transform: translate(-85%, 72%);
+      }
+    }
+
+    &:nth-child(3) {
+      right: 0;
+      bottom: 0;
+      transform: translate(55%, 20%);
+      z-index: 1;
+      background-color: #bfadff;
+      width: 200%;
+
+      @media (width >= 640px) {
+        transform: translate(55%, 20%);
+      }
+    }
+  }
+}
+
+:global(.is-mobile) .background .background-item {
+  display: none;
+
+  @media (width >= 640px) {
+    display: none;
+  }
+}

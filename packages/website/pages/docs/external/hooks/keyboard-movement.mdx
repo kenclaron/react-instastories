@@ -1,0 +1,22 @@
+# useKeyboardMovement
+
+## Description
+
+The `useKeyboardMovement` hook is a React hook designed for handling keyboard events to facilitate story or page navigation.
+This hook leverages external contexts from `@react-instastories/base` to enable navigation functionality via keyboard inputs.
+
+## Properties
+
+| Property           | Type       | Description                                                                           |
+| ------------------ | ---------- | ------------------------------------------------------------------------------------- |
+| `context`          | `Object`   | Object that contains functions for next and previous functionality on keyboard events |
+| `context.next`     | `Function` | Function that causes on next keyboard event (right arrow)                             |
+| `context.previous` | `Function` | Function that causes on previous keyboard event (left arrow)                          |
+
+## Usage
+
+```tsx copy
+const stories = useStoriesContext();
+
+useKeyboardMovement(stories);
+```

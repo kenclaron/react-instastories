@@ -1,0 +1,32 @@
+# Hook usePage
+
+## Description
+
+The `usePage` hook is a React hook that provides access to the current page.
+It utilizes the `PageContext` to deliver page-specific information, such as the `HTMLElement` associated with the page and the index of the current page.
+This hook is particularly useful for components that need to be aware of their position or associated element within a page-based paginated interface.
+
+## Usage
+
+To use the `usePage` hook, import it into your component and call it.
+The hook returns an object containing the current page's `HTMLElement` and index.
+
+```tsx copy
+import { usePage } from "@react-instastories/base";
+
+import React from "react";
+
+function InnerPageContent() {
+  const page = usePage();
+
+  React.useEffect(() => console.debug(page), [page]);
+
+  return (
+    <div>
+      <h1>Page Information</h1>
+      <p>Page Index: {page.index}</p>
+      <p>Page Id Element: {page.element?.id}</p>
+    </div>
+  );
+}
+```

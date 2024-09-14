@@ -1,0 +1,46 @@
+# useInteractive
+
+## Description
+
+The `useInteractive` hook provides functionality to manage interactive elements within a document.
+It allows you to disable and enable interactive elements (like links, buttons, and form controls) outside a specified element, which can be particularly useful for managing focus and interaction within modal dialogs or other isolated UI components.
+
+## Return Values
+
+| Property  | Type                                             | Description                                                             |
+| --------- | ------------------------------------------------ | ----------------------------------------------------------------------- |
+| `disable` | `(element: HTMLElement) => InteractiveElement[]` | Function to disable interactive elements outside the specified element. |
+| `enable`  | `(items: InteractiveElement[]) => void`          | Function to re-enable previously disabled interactive elements.         |
+
+## Usage
+
+```tsx copy
+import { useInteractive } from "@react-instastories/external";
+
+import React from "react";
+
+function InteractiveInformation({
+  interactiveOnlyContainer
+}: {
+  interactiveOnlyContainer: HTMLElement;
+}) {
+  const interactive = useInteractive();
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!interactiveOnlyContainer) return;
+
+    const items = interactive.disable(interactiveOnlyContainer);
+
+    setCount(items.length);
+
+    return () => {
+      interactive.enable(items);
+
+      setCount(0);
+    };
+  }, [interactiveOnlyContainer]);
+
+  return <p>Count of disabled items: {count}</p>;
+}
+```

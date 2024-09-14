@@ -1,0 +1,71 @@
+.transitions-enter-active {
+  opacity: 0;
+  max-height: 0;
+}
+
+.transitions-enter-done {
+  opacity: 1;
+  transition-duration:
+    $time-tick * 4,
+    $time-tick * 4;
+  transition-property: max-height, opacity;
+  max-height: 384px;
+}
+
+.transitions-exit {
+  opacity: 1;
+  transition-duration:
+    $time-tick * 2,
+    $time-tick * 2;
+  transition-property: max-height, opacity;
+  max-height: 0;
+}
+
+.transitions-exit-done {
+  opacity: 0;
+  max-height: 0;
+}
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-enter-active,
+.fade-exit-active {
+  transition-duration:
+    $time-tick * 4,
+    $time-tick * 2;
+  transition-property: max-height, opacity;
+}
+
+.fade-exit-active {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+}
+
+.instastories-viewer--exiting .story-container-buttons,
+.story-container-buttons.transitions-exit-active,
+.transitions-exit-active {
+  opacity: 0;
+  transition-duration:
+    $time-tick * 2,
+    $time-tick * 2;
+  transition-property: max-height, opacity;
+  max-height: 0;
+}
+
+.instastories-viewer--exiting .story-container-buttons.transitions-enter-done {
+  opacity: 0;
+  transition-duration:
+    $time-tick * 2,
+    $time-tick * 2;
+  transition-property: max-height, opacity;
+  max-height: 0;
+}

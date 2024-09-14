@@ -1,0 +1,145 @@
+# Animation
+
+You can choose the type of animation when the user opens or closes the viewer component.
+
+## Smart
+
+JS-Animation that tries recognize rectangle of [Preview](/docs/base/preview) component into opening [story](/docs/base/story) and creates `CSS-in-JS` "pulse" animation.
+_If you are overestimating performance on older or mobile devices, you should not use this value._
+
+### Features
+
+- Recognizes the bounding box of the [Preview](/docs/base/preview) component.
+- Creates a "pulse" animation effect using `CSS-in-JS`.
+- Suitable for modern devices with better performance.
+
+### Usage
+
+```tsx copy
+<InstaStories config={{ animation: "smart" }}>
+  {...configurable}
+  {...stories}
+</InstaStories>
+```
+
+### Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories config={{ animation: "smart" }}>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Open with smart animation of viewer</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+## Linear
+
+Animation based only on `CSS` styles by [step-by-step animation](/docs/base/models/steps).
+Prevent JS recognizing rectangle of [Preview](/docs/base/preview) component.
+
+### Features
+
+- Utilizes pure CSS for animations.
+- Simpler and more performance-friendly compared to `smart` animation.
+- Ideal for applications where simplicity and performance are prioritized.
+
+### Usage
+
+```tsx copy
+<InstaStories config={{ animation: "linear" }}>
+  {...configurable}
+  {...stories}
+</InstaStories>
+```
+
+### Demo
+
+<InstaStories config={{ animation: "linear" }}>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Open with linear animation of viewer</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+## Immediately
+
+Prevent all JS and CSS logics when user opens/closes viewer.
+
+### Features
+
+- No animations or [transition steps](/docs/base/models/steps), providing the fastest viewer opening experience.
+- Best for devices where performance is a critical factor.
+- Ensures minimal overhead when interacting with stories.
+
+### Usage
+
+```tsx copy
+<InstaStories config={{ animation: "immediately" }}>
+  {...configurable}
+  {...stories}
+</InstaStories>
+```
+
+### Demo
+
+<InstaStories config={{ animation: "immediately" }}>
+  <Configurable.Container>
+    <Configurable.Viewer>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+    </Configurable.Viewer>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Open without any animation of viewer</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

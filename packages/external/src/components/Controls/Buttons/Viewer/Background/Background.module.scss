@@ -1,0 +1,29 @@
+@import "../../../../../../../base/src/styles/variables";
+@import "../../../../../../../base/src/styles/mixins";
+
+.viewer:not([data-preset]) {
+  .viewer-background {
+    @include fullscreen;
+
+    opacity: 0;
+    z-index: -1;
+    transition-duration: $time-tick;
+    transition-property: opacity;
+    transition-timing-function: ease;
+    cursor: initial;
+    background-color: black;
+  }
+}
+
+.viewer--entered:not([data-preset]) {
+  .viewer-background {
+    opacity: 1;
+  }
+}
+
+@media only screen and (width >= $media-mobile-width) {
+  .viewer:not([data-preset]) .viewer-background {
+    opacity: 0;
+    transition-duration: 0s;
+  }
+}

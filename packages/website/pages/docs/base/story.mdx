@@ -1,0 +1,177 @@
+# Story
+
+## Description
+
+The `Story` component is a React component that manages and renders a single story with a [preview](/docs/base/preview) and [pages](/docs/base/pages).
+It utilizes multiple hooks to access context values and handle story [transitions](/docs/base/models/steps), [preview](/docs/base/preview), and [pages](/docs/base/pages) rendering.
+The component conditionally manages various events such as opening, closing the story in viewer.
+
+## Properties
+
+### Component
+
+Below are the properties and events available for the `Story` component:
+
+| Property    | Type                     | Description                                                             |
+| ----------- | ------------------------ | ----------------------------------------------------------------------- |
+| `as`        | `React.ElementType`      | Specifies the component type to render (by default, `"div"`).           |
+| `duration`  | `number`                 | Duration of the each page of story in milliseconds.                     |
+| `preload`   | `boolean`                | Determines whether the story should be preloaded (by default, `false`). |
+| `start`     | `number`                 | Starting page of the story when opened.                                 |
+| `...events` | [`StoryEvents`](#events) | Optional callback events for component.                                 |
+| `...props`  | `React.HTMLAttributes`   | Standard div attributes.                                                |
+
+### Events
+
+| Event     | Type       | Description                                                                                                                                                      |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onOpen`  | `Function` | Function to be called when the story is opened in viewer. If the function returns a `truthy` value, then the function will prevent function to hide the Preview. |
+| `onClose` | `Function` | Function to be called when the story is closed in viewer. If the function returns a `truthy` value, then the function will prevent function to show the Preview. |
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`useTimerContext`](/docs/base/contexts/timer)
+- [`useStoriesContext`](/docs/base/contexts/stories)
+- [`usePagesContext`](/docs/base/contexts/pages)
+- [`useStory`](/docs/base/hooks/story)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+<Story
+  preload
+  duration={20000}
+  start={1}
+  onOpen={() => console.debug("Story opened!")}
+  onClose={() => console.debug("Story closed!")}
+>
+  <Pages>
+    <Page>Page with index #0</Page>
+    <Page>Page with index #1</Page>
+    <Page>Page with index #2</Page>
+  </Pages>
+</Story>
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import BackgroundImage from "../../../public/docs/image.svg";
+import { Image, hueRotate } from "../../../src/shared";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+import "../../../src/pages/documentation/ui/_prevent.scss";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story preload className="prevent">
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+        />
+        <h1>Story always preloaded in viewer</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page Content</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story start={1}>
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+        />
+        <h1>Story with 3 pages and opens second page instantly</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(2), backgroundColor: "#2470c0" }}
+          />
+          <h1>First page</h1>
+        </Page>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+          />
+          <h1>Second page</h1>
+        </Page>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(3), backgroundColor: "#2470c0" }}
+          />
+          <h1>Third page</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story duration={30000}>
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(4), backgroundColor: "#2470c0" }}
+        />
+        <h1>All pages in this story are 30 seconds long</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(4), backgroundColor: "#2470c0" }}
+          />
+          <h1>First page 30 seconds story</h1>
+        </Page>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(5), backgroundColor: "#2470c0" }}
+          />
+          <h1>Second page 30 seconds story</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

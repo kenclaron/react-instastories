@@ -1,3 +1,9 @@
 {
-  "eslint.workingDirectories": ["./src", "./"]
+  "files.eol": "\n",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.rulers": [80],
+  "css.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss"]
 }

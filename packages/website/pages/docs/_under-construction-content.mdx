@@ -1,0 +1,28 @@
+import { usePathname } from "next/navigation";
+import { Link, useConfig } from "nextra-theme-docs";
+
+## ⚠️ Page Under Construction
+
+This feature is partially supported in the library, but the documentation page for it has not been written yet.
+It takes time to create detailed and quality documentation, so this page will be added later, but remember that the content that will be displayed here is already in the library.
+
+## 💁 Want to Help?
+
+**If you are willing and able to help** complete the documentation, other developers will greatly appreciate your _contribution_!
+You can leave your suggestions or submit materials related to this function at the following link:
+
+<br />
+
+<Link
+  className="nx-inline-block"
+  href={[
+    useConfig().project.link,
+    "/packages/website/pages",
+    usePathname(),
+    ".mdx"
+  ].join("")}
+>
+  Edit this page
+</Link>
+
+Thank you for your patience and understanding! 🙏

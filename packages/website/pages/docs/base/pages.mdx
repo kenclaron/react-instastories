@@ -1,0 +1,127 @@
+# Pages
+
+## Description
+
+The `Pages` component manages and renders a series of pages within a [story](/docs/base/story).
+It leverages multiple hooks to access and manage context values related to the viewer, [pages](/docs/base/contexts/pages), [timer](/docs/base/contexts/timer), and [stories](/docs/base/contexts/stories).
+Additionally, it uses a hook to order and render its children elements, ensuring the correct sequence and transitions between pages.
+
+## Properties
+
+### Component
+
+| Prop        | Type                                                               | Description                                                 |
+| ----------- | ------------------------------------------------------------------ | ----------------------------------------------------------- |
+| `as`        | `React.ElementType`                                                | Specifies the component type to render (by default, `div`). |
+| `...events` | [`PaginationEvents`](/docs/base/hooks/pagination#component-events) | Optional callback events for component.                     |
+| `...props`  | `React.HTMLAttributes`                                             | Standard HTML attributes for an HTML element.               |
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`useTimerContext`](/docs/base/contexts/timer)
+- [`useStoriesContext`](/docs/base/contexts/stories)
+- [`usePagesContext`](/docs/base/contexts/pages)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+<Pages>
+  <Page>{...content}</Page>
+  <Page>{...content}</Page>
+  <Page>{...content}</Page>
+  {...pages}
+</Pages>
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+import BackgroundImage from "../../../public/docs/image.svg";
+import { Image, hueRotate } from "../../../src/shared";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+        />
+        <h1>Story with 1 page</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #1</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <Image
+          alt="Curved Lines Background"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+        />
+        <h1>Story with 3 page</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #1</h1>
+        </Page>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(2), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #2</h1>
+        </Page>
+        <Page>
+          <Image
+            alt="Curved Lines Background"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(3), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

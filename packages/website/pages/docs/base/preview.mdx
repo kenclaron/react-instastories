@@ -1,0 +1,201 @@
+# Preview
+
+## Description
+
+The `Preview` component is a React component that renders a action element to open a story.
+It uses hooks to access the [preview](/docs/base/contexts/preview) and [viewer](/docs/base/contexts/viewer) contexts and conditionally applies CSS classes and attributes based on these context values.
+The component is forward-ref compatible, allowing it to be used with refs.
+
+## Properties
+
+### Component
+
+Below are the properties and events available for the `Preview` component:
+
+| Property    | Type                       | Description                                                      |
+| ----------- | -------------------------- | ---------------------------------------------------------------- |
+| `as`        | `React.ElementType`        | Specifies the component type to render (by default, `"button"`). |
+| `children`  | `React.ReactNode`          | The content to be rendered inside the button.                    |
+| `className` | `string`                   | Additional CSS class names to apply.                             |
+| `...events` | [`PreviewEvents`](#events) | Optional callback events for component.                          |
+| `...props`  | `React.HTMLAttributes`     | Standard HTML Element attributes.                                |
+
+### Events
+
+| Property  | Type       | Description                                                                                                                                                      |
+| --------- | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `onClick` | `Function` | Function to be called when the `Preview` is clicked. If the function returns a `truthy` value, then the function will prevent the viewer component from opening. |
+| `onShow`  | `Function` | Function to be called when the `Preview` is shown.                                                                                                               |
+| `onHide`  | `Function` | Function to be called when the `Preview` is hidden.                                                                                                              |
+
+## States
+
+When a story is opened in the viewer, the following `className` is applied to the [Preview](/docs/base/preview) component to indicate its expanded state:
+
+1. Expanded (classname: `.instastories-preview--expanded`)
+   - Component sets `aria-expanded` to `true`, by default.
+   - This class is applied to the [Preview](/docs/base/preview) component when the current story is opened in the viewer.
+   - Use this class to define styles or animations that reflect the expanded state of the preview, indicating that the story is currently active and being viewed.
+   - This state helps in visually distinguishing the active story from other previews.
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`usePreviewContext`](/docs/base/contexts/preview)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+<Preview
+  onClick={() => console.debug("Preview clicked!")}
+  onShow={() => console.debug("Preview is shown!")}
+  onHide={() => console.debug("Preview is hidden!")}
+>
+  <h1>Preview Content</h1>
+</Preview>
+```
+
+## ARIA
+
+If you want support [common ARIA-behaviour](https://www.w3.org/WAI/ARIA/apg/patterns/toolbar/) for `role="toolbar"` as Preview components, you can use third-party library `@react-aria/toolbar` or create custom own solution.
+
+```tsx copy
+import { useToolbar } from "@react-aria/toolbar";
+import React from "react";
+
+export function AppStories() {
+  const ref = React.useRef(null);
+  const { toolbarProps } = useToolbar({ "aria-label": "Stories" }, ref);
+
+  return (
+    <InstaStories>
+      <Stories {...toolbarProps} ref={ref}>
+        <Story>
+          <Preview>Preview Content #1</Preview>
+          {...pages}
+        </Story>
+        <Story>
+          <Preview>Preview Content #2</Preview>
+          {...pages}
+        </Story>
+        <Story>
+          <Preview>Preview Content #3</Preview>
+          {...pages}
+        </Story>
+      </Stories>
+    </InstaStories>
+  );
+}
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+import "../../../src/pages/documentation/ui/_preview.scss";
+
+import BackgroundImage from "../../../public/docs/image.svg";
+import { Image, hueRotate } from "../../../src/shared";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <Image
+          alt="Curved Lines Background Preview"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+        />
+        <h1>Preview Content #1</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background Preview"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(0), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page Content #1</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview className="instastories-preview--outside">
+        <Image
+          alt="Curved Lines Background Preview"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+        />
+        <span style={{ fontSize: 32 }} className="material-icons-outlined">
+          history_edu
+        </span>
+        <h1>Preview Content #2</h1>
+        <p>paragraph</p>
+        <span className="instastories-preview-badge">badge</span>
+        <div>block</div>
+        <div>
+          <span>span 1</span>
+          <span>span 2</span>
+          <sup>sup</sup>
+          <sub>sub</sub>
+        </div>
+        <span className="skeleton">Animation</span>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background Preview"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(1), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page Content #2</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview className="instastories-preview--large">
+        <Image
+          alt="Curved Lines Background Preview"
+          src={BackgroundImage}
+          style={{ filter: hueRotate(2), backgroundColor: "#2470c0" }}
+        />
+        <h1>Preview Content #3</h1>
+        <p>Used exclusive styles for this component</p>
+      </Preview>
+      <Pages>
+        <Page>
+          <Image
+            alt="Curved Lines Background Preview"
+            src={BackgroundImage}
+            style={{ filter: hueRotate(2), backgroundColor: "#2470c0" }}
+          />
+          <h1>Page Content #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

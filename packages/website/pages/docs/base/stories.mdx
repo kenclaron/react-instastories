@@ -1,0 +1,126 @@
+# Stories
+
+## Description
+
+The `Stories` component is designed to manage and render a list of stories within your application.
+It leverages various hooks to access and manage context values related to the viewer, [timer](/docs/base/contexts/timer), [stories](/docs/base/contexts/stories), and [pages](/docs/base/contexts/pages).
+The component conditionally renders its children based on these context values and handles story transitions.
+It is also forward-ref compatible, allowing it to be used with refs.
+
+## Properties
+
+### Component
+
+| Prop        | Type                                                               | Description                                                 |
+| ----------- | ------------------------------------------------------------------ | ----------------------------------------------------------- |
+| `as`        | `React.ElementType`                                                | Specifies the component type to render (by default, `div`). |
+| `...events` | [`PaginationEvents`](/docs/base/hooks/pagination#component-events) | Optional callback events for component.                     |
+| `...props`  | `React.HTMLAttributes`                                             | Standard HTML attributes for an HTML element.               |
+
+## Contexts Available
+
+- [`useViewerContext`](/docs/base/contexts/viewer)
+- [`useConfig`](/docs/base/hooks/config)
+
+## Usage
+
+```tsx copy
+<Stories>
+  <Story>{...content}</Story>
+  <Story>{...content}</Story>
+  <Story>{...content}</Story>
+  {...stories}
+</Stories>
+```
+
+## Demo
+
+### Single Story
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Single Story</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Single Story</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>
+
+### Multiple Stories
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>First Story</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>First Story</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Second Story</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Second Story</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Third Story</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Third Story</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

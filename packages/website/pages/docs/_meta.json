@@ -1,0 +1,35 @@
+{
+  "_under-construction-content": {
+    "display": "hidden"
+  },
+  "-- Get started": {
+    "type": "separator",
+    "title": "Get started"
+  },
+  "index": "Introduction",
+  "install": "How to install?",
+  "what-is-stories": "What is a Stories?",
+  "why-this-library": "Why this library?",
+  "separator - Libraries": {
+    "type": "separator"
+  },
+  "title - Libraries": {
+    "type": "separator",
+    "title": "Libraries"
+  },
+  "base": "Base",
+  "external": "External",
+  "presets": "Presets",
+  "separator - More features": {
+    "type": "separator"
+  },
+  "title - More features": {
+    "type": "separator",
+    "title": "More features"
+  },
+  "in-app-viewer-only": "In-App Viewer Only",
+  "lazy": "Lazy Loading",
+  "overriding-event-behaviour": "Overriding Event Behavior",
+  "quiz": "Quiz Mode",
+  "server-side-rendering": "Server-Side Rendering"
+}

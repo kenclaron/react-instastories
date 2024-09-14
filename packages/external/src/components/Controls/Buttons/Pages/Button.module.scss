@@ -1,0 +1,27 @@
+@import "../../../../../../base/src/styles/variables";
+@import "../../../../../../base/src/styles/mixins";
+
+.viewer:not([data-preset]) .story .button-pages-control,
+.viewer:not([data-preset]) .page .button-pages-control,
+.viewer:not([data-preset]) .button-pages-control {
+  position: absolute;
+  top: 0;
+  appearance: none;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  width: 1.5em;
+  height: 100%;
+
+  &--previous {
+    left: 0;
+  }
+
+  &--next {
+    right: 0;
+  }
+}
+
+.viewer:not([data-preset]).viewer--entering .button-pages-control {
+  pointer-events: none;
+}

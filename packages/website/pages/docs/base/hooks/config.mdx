@@ -1,0 +1,26 @@
+# Hook useConfig
+
+## Description
+
+The `useConfig` hook is a React hook designed to provide easy access to the current configuration context within your application.
+It utilizes the `InstaStoriesContext` to fetch the configuration settings, allowing you to seamlessly access and use them in your components.
+You can also integrate the `useConfig` hook with other hooks and state management logic within `InstaStoriesContext` components.
+This hook returns [`Configuration`](/docs/base/instastories#configuration) object.
+
+## Usage
+
+To use the `useConfig` hook, simply import it into your component and call it. The hook will return the current [`Configuration`](/docs/base/instastories#configuration) object from any component into `InstaStoriesContext`.
+
+```tsx copy
+import { useConfig } from "@react-instastories/base";
+
+import React from "react";
+
+function DebugConfig() {
+  const config = useConfig();
+
+  React.useEffect(() => console.debug(config), [config]);
+
+  return <pre>{JSON.stringify(config, null, 2)}</pre>;
+}
+```

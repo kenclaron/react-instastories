@@ -1,0 +1,260 @@
+/* Stylesheet for buttons and links as buttons behaviour */
+
+body {
+  .instastories-stories:not([data-preset]),
+  .instastories-viewer:not([data-preset]) {
+    --website-is-background-color: #323232;
+  }
+
+  .instastories-stories:not([data-preset]) .instastories-preview--expanded {
+    transition: opacity $time-tick * 0.25 ease-in-out 0s;
+  }
+
+  .instastories-stories:not([data-preset]) .instastories-preview {
+    z-index: 0;
+    background-color: var(--website-is-background-color);
+    color: white;
+  }
+
+  .instastories-viewer:not([data-preset]) .instastories-page {
+    &:not(:has(video)) {
+      background-color: var(--website-is-background-color);
+    }
+
+    & > video {
+      background-color: transparent;
+    }
+  }
+}
+
+.instastories-stories:not([data-preset]) > button.instastories-preview,
+.instastories-viewer:not([data-preset]) .instastories-button-stories-control,
+.instastories-viewer:not([data-preset]) .instastories-button-viewer-control,
+.interactive--force {
+  &::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    transition: all $time-tick ease-in-out $time-tick / 2;
+    border-radius: 0.7em;
+    background-color: transparent;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    &::after {
+      position: absolute;
+      transition: all $time-tick ease-in-out;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+  }
+
+  &:hover {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        var(--button-background-color-hover) 25%,
+        #7f7f7f4d
+      );
+    }
+  }
+
+  &:focus {
+    &::after {
+      background-color: color-mix(
+        in srgb,
+        var(--button-background-color-focus) 25%,
+        #7f7f7f73
+      );
+    }
+  }
+
+  &:active {
+    &::after {
+      background-color: transparent;
+    }
+  }
+}
+
+dialog.instastories-viewer:not([data-preset])
+  .instastories-page
+  .instastories-button-pages-control {
+  width: 4em;
+  max-width: 50dvw;
+
+  @media (width >= 640px) {
+    width: 2em;
+  }
+}
+
+dialog.instastories-viewer:not(
+    .instastories-viewer--entering,
+    .instastories-viewer--entered
+  ):not([data-preset]).demonstration-viewer
+  .instastories-story {
+  border-radius: 1em;
+
+  @media (width >= 640px) {
+    border-radius: 1em;
+  }
+
+  @media (width >= 1280px) {
+    border-radius: 1.5em;
+  }
+}
+
+dialog.instastories-viewer:not(
+    [data-preset]
+  ).demonstration-viewer.instastories-viewer--entering,
+dialog.instastories-viewer:not(
+    [data-preset]
+  ).demonstration-viewer.instastories-viewer--exiting {
+  .instastories-story {
+    border-radius: 1em;
+    overflow: hidden;
+
+    @media (width >= 640px) {
+      border-radius: 1em;
+    }
+
+    @media (width >= 1280px) {
+      border-radius: 1.5em;
+    }
+  }
+}
+
+dialog.demonstration-viewer.instastories-viewer:not(
+    [data-preset]
+  ).instastories-viewer--entered,
+dialog.demonstration-viewer.instastories-viewer:not(
+    [data-preset]
+  ).instastories-viewer--entering {
+  .instastories-story {
+    transition:
+      all $time-tick * 3 ease,
+      opacity $time-tick * 2 ease;
+    border-radius: 0;
+
+    @media (width >= 640px) {
+      border-radius: 1em;
+    }
+  }
+}
+
+dialog.demonstration-viewer.instastories-viewer:not(
+    [data-preset]
+  ).instastories-viewer--entered {
+  .instastories-story {
+    transition:
+      border-radius $time-tick * 3 ease,
+      transform $time-tick * 3 ease,
+      opacity $time-tick * 2 ease;
+  }
+}
+
+dialog.demonstration-viewer.instastories-viewer:not([data-preset]) {
+  .instastories-story {
+    .instastories-indicator-container {
+      padding: 2em;
+    }
+
+    .action-item--tertiary,
+    .action-item--secondary {
+      color: black;
+    }
+  }
+
+  .instastories-button-stories-control,
+  .instastories-button-viewer-control {
+    path {
+      fill: black;
+    }
+
+    &:hover {
+      background-color: initial;
+    }
+
+    &--close {
+      margin: 2.325em 1.5em;
+
+      @media (width >= 640px) {
+        margin: 0.5em;
+      }
+    }
+
+    @media (width >= 640px) {
+      path {
+        fill: white;
+      }
+    }
+  }
+
+  .instastories-button-stories-control {
+    display: none;
+
+    @media (width >= 640px) {
+      display: flex;
+    }
+  }
+
+  .close-button-viewer {
+    display: none;
+
+    @media (width >= 640px) {
+      display: flex;
+    }
+  }
+
+  .close-button-story {
+    display: flex;
+
+    @media (width >= 640px) {
+      display: none;
+    }
+  }
+}
+
+.instastories-viewer--exiting.demonstration-viewer:not([data-preset])
+  .instastories-story:has(
+    .instastories-page:not(.instastories-page--disabled):first-child
+      ~ .instastories-page--disabled
+  ) {
+  opacity: 1 !important;
+}
+
+*:has(.instastories-viewer--exiting) .nextra-nav-container {
+  transition: 0s ease z-index $time-tick;
+}
+
+*:has(
+    .instastories-viewer--exiting.demonstration-viewer:not([data-preset])
+      .instastories-story:not(.instastories-story--disabled)
+      .instastories-page:not(.instastories-page--disabled):first-child
+      ~ .instastories-page--disabled
+  )
+  .instastories-preview--expanded {
+  opacity: 1 !important;
+  transition: opacity $time-tick ease $time-tick * 2.5;
+}
+
+*:has(
+    .instastories-viewer--exiting.demonstration-viewer
+      .instastories-story:not(.instastories-story--disabled)
+      .instastories-page:only-child:not(.instastories-page--disabled)
+  )
+  .instastories-preview--expanded {
+  opacity: 1 !important;
+  transition: opacity $time-tick ease $time-tick * 2.5;
+}
+
+:is(html[class~="dark"] .instastories-viewer) {
+  color: initial;
+}

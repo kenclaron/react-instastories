@@ -1,0 +1,28 @@
+.instastories-stories {
+  .instastories-preview {
+    &.instastories-preview--large {
+      aspect-ratio: auto;
+      width: 32em;
+    }
+
+    &.instastories-preview--outside {
+      overflow: initial;
+
+      & > img,
+      & > picture {
+        border-radius: 1em;
+        overflow: hidden;
+      }
+
+      & span.instastories-preview-badge {
+        position: absolute;
+        top: -0.25em;
+        left: -0.25em;
+        z-index: 1;
+        border-radius: 0.5em;
+        background-color: red;
+        padding: 0.5em;
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "stylelint-prettier/recommended",
+    "stylelint-config-standard-scss"
+  ],
+  "rules": {
+    "selector-class-pattern": null,
+    "no-descending-specificity": null,
+    "scss/operator-no-newline-after": null,
+    "selector-pseudo-class-no-unknown": null,
+    "custom-property-pattern": null,
+    "selector-not-notation": null,
+    "color-function-notation": null,
+    "media-feature-range-notation": "context"
+  }
+}

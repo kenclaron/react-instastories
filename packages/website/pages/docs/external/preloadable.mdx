@@ -1,0 +1,123 @@
+# Preloadable
+
+## Description
+
+The `Preloadable` components, `Stories` and `Pages`, manage the preloading of story or page elements within a context. They ensure that specified items are preloaded based on the current index and the defined range for previous and next items. These components are useful for enhancing the user experience by preloading content, reducing loading times, and ensuring smoother transitions.
+
+## Properties
+
+## Stories
+
+| Property     | Type      | Description                                                                                                                                                                     |
+| ------------ | --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `next`       | `number`  | The number of stories to preload ahead of the current story (by default, `1`).                                                                                                  |
+| `previous`   | `number`  | The number of stories to preload behind the current story (by default, `1`).                                                                                                    |
+| `unloadable` | `boolean` | A flag indicating whether the stories can be unloaded if they are not within the preload range. If `true`, items outside the range will not be preloaded (by default, `false`). |
+
+## Pages
+
+| Property     | Type      | Description                                                                                                                                                                   |
+| ------------ | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `next`       | `number`  | The number of pages to preload ahead of the current page (by default, `1`).                                                                                                   |
+| `previous`   | `number`  | The number of pages to preload behind the current page (by default, `1`).                                                                                                     |
+| `unloadable` | `boolean` | A flag indicating whether the pages can be unloaded if they are not within the preload range. If `true`, items outside the range will not be preloaded (by default, `false`). |
+
+## Usage
+
+```tsx copy
+import { Configurable } from "@react-instastories/base";
+import { Preloadable } from "@react-instastories/external";
+
+function AppStories() {
+  return (
+    <Configurable.Container>
+      <Configurable.Viewer>
+        <Preloadable.Stories unloadable next={1} previous={1} />
+        <Preloadable.Pages unloadable next={1} previous={1} />
+      </Configurable.Viewer>
+    </Configurable.Container>
+  );
+}
+```
+
+## Demo
+
+import {
+  Configurable,
+  InstaStories,
+  Page,
+  Pages,
+  Preview,
+  Stories,
+  Story
+} from "@react-instastories/base";
+import { Controls, Events, Preloadable } from "@react-instastories/external";
+
+import "@react-instastories/base/index.css";
+import "@react-instastories/external/index.css";
+
+<InstaStories>
+  <Configurable.Container>
+    <Configurable.Viewer events={[Events.Mount.AutoClose]}>
+      <Controls.Viewer.Background />
+      <Controls.Viewer.Close />
+      <Controls.Stories.Next />
+      <Controls.Stories.Previous />
+      <Preloadable.Stories unloadable next={1} previous={1} />
+      <Preloadable.Pages unloadable next={1} previous={1} />
+    </Configurable.Viewer>
+    <Configurable.Story>
+      <Controls.Indicator interactive threshold={1000} />
+    </Configurable.Story>
+  </Configurable.Container>
+  <Stories>
+    <Story>
+      <Preview>
+        <h1>Story #1</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #1 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #1 Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Story #1 Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #2</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #2 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #2 Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Story #2 Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+    <Story>
+      <Preview>
+        <h1>Story #3</h1>
+      </Preview>
+      <Pages>
+        <Page>
+          <h1>Story #3 Page #1</h1>
+        </Page>
+        <Page>
+          <h1>Story #3 Page #2</h1>
+        </Page>
+        <Page>
+          <h1>Story #3 Page #3</h1>
+        </Page>
+      </Pages>
+    </Story>
+  </Stories>
+</InstaStories>

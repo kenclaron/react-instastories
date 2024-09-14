@@ -1,0 +1,60 @@
+{
+  "name": "@react-instastories/website",
+  "version": "1.0.0",
+  "description": "Demonstration and documentation website with @react-instastories libraries",
+  "private": true,
+  "author": {
+    "name": "Dmitry Britov",
+    "email": "kenclaron@gmail.com",
+    "url": "https://github.com/kenclaron"
+  },
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenclaron/react-instastories",
+    "directory": "packages/website"
+  },
+  "bugs": {
+    "url": "https://github.com/kenclaron/react-instastories/issues"
+  },
+  "engines": {
+    "yarn": ">=3",
+    "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "serve ./out"
+  },
+  "dependencies": {
+    "@react-aria/toolbar": "^3.0.0-beta.8",
+    "classnames": "^2.5.1",
+    "material-icons": "^1.13.12",
+    "next": "^14.2.8",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
+    "random": "^5.0.1",
+    "react-device-detect": "^2.2.3",
+    "react-responsive": "^10.0.0",
+    "react-transition-group": "^4.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "file:../../node_modules/@types/node",
+    "@types/react": "file:../../node_modules/@types/react",
+    "@types/react-dom": "file:../../node_modules/@types/react-dom",
+    "@types/react-transition-group": "^4.4.11",
+    "sass": "file:../../node_modules/sass",
+    "serve": "^14.2.3",
+    "typescript": "file:../../node_modules/typescript"
+  },
+  "peerDependencies": {
+    "@react-instastories/base": "file:../../packages/base/dist",
+    "@react-instastories/external": "file:../../packages/external/dist",
+    "@react-instastories/presets": "file:../../packages/presets/dist",
+    "react": "file:../../node_modules/react",
+    "react-dom": "file:../../node_modules/react-dom"
+  },
+  "optionalDependencies": {
+    "@napi-rs/simple-git-linux-x64-gnu": "*"
+  }
+}

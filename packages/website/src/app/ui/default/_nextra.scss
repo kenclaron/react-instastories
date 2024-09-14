@@ -1,0 +1,312 @@
+/* Overriding default stylesheet of Nextra */
+
+@import "../system/variables";
+
+.light,
+.dark {
+  --navigation-background-color: transparent;
+}
+
+.light {
+  --navigation-background-color--filled: #fffd;
+}
+
+.dark {
+  --navigation-background-color--filled: #111d;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family:
+    Roboto,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Noto Sans",
+    Ubuntu,
+    Cantarell,
+    "Helvetica Neue",
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji";
+}
+
+.light .nextra-nav-container,
+.dark .nextra-nav-container {
+  z-index: 10;
+
+  .nextra-nav-container-blur {
+    transition: background-color $time-tick ease-in-out;
+    background-color: var(--navigation-background-color) !important;
+  }
+
+  .nextra-search {
+    & input {
+      height: 2.8575em;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    & input:hover:not(& input:focus) {
+      background-color: var(--button-background-color-hover);
+    }
+  }
+
+  nav {
+    justify-content: flex-start !important;
+
+    a {
+      min-width: fit-content;
+      overflow: hidden;
+    }
+
+    a.nx-text-sm {
+      @media (width >= 768px) {
+        display: flex;
+        align-items: center;
+        height: 2.8575em;
+      }
+    }
+
+    a.nx-flex {
+      &:hover,
+      &:focus,
+      &:active,
+      &[aria-current="true"] {
+        outline: hsl(
+            var(--nextra-primary-hue) var(--nextra-primary-saturation) 66% /
+              100%
+          )
+          solid 0.125em;
+      }
+    }
+  }
+}
+
+.light .nextra-nav-container--filled,
+.dark .nextra-nav-container--filled {
+  .nextra-nav-container-blur {
+    background-color: var(--navigation-background-color--filled) !important;
+  }
+}
+
+main > div > a,
+.nextra-nav-container > nav > a,
+.nextra-nav-container > nav > button {
+  &:not([aria-current="true"]) > span {
+    color: var(--shiki-color-text);
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):hover {
+    color: var(--shiki-color-text);
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):focus {
+    color: var(--shiki-color-text);
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):active {
+    color: var(--shiki-color-text);
+  }
+}
+
+.nextra-nav-container > nav > a,
+.nextra-nav-container > nav > button,
+main > div > a,
+.interactive {
+  position: relative;
+  border-radius: 0.5em;
+  overflow: hidden;
+
+  &.nx-rounded {
+    border-radius: 0.25em;
+
+    &::before {
+      border-radius: 0.25em;
+    }
+  }
+
+  &.nx-text-sm {
+    padding-block: 0.595em;
+  }
+
+  & > h1 {
+    display: none;
+    padding: 0.5em;
+
+    @media (width >= 768px) {
+      display: initial;
+    }
+  }
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    transition: all $time-tick ease-in-out $time-tick / 2;
+    background-color: transparent;
+    width: 0;
+    height: 0;
+    content: "";
+  }
+
+  &:hover,
+  &:focus,
+  &:active,
+  &[aria-current="true"] {
+    &::before {
+      position: absolute;
+      transition: all $time-tick ease-in-out;
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+  }
+
+  &[aria-current="true"] {
+    color: hsl(
+      var(--nextra-primary-hue) var(--nextra-primary-saturation) 55% / 100%
+    );
+
+    &::before {
+      --tw-text-opacity: 1;
+
+      background-color: hsl(
+        var(--nextra-primary-hue) var(--nextra-primary-saturation) 66% / 10%
+      );
+      color: hsl(
+        var(--nextra-primary-hue) var(--nextra-primary-saturation) 45% /
+          var(--tw-text-opacity)
+      );
+    }
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):hover {
+    &::before {
+      background-color: var(--button-background-color-hover);
+    }
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):focus {
+    &::before {
+      background-color: var(--button-background-color-focus);
+    }
+  }
+
+  &:not(:has(h1), &[aria-current="true"]):active {
+    &::before {
+      background-color: var(--button-background-color-active);
+    }
+  }
+}
+
+.material-icons-outlined {
+  pointer-events: none;
+  user-select: none;
+}
+
+.is-mobile kbd {
+  display: none !important;
+}
+
+@media (width <= 767px) {
+  nav {
+    display: flex;
+
+    & h1 {
+      display: none;
+    }
+  }
+
+  .is-mobile kbd,
+  kbd {
+    display: none !important;
+  }
+
+  .nextra-nav-container ~ div > *[class*="nx-z-"] {
+    z-index: 8;
+  }
+
+  .nextra-sidebar-container {
+    z-index: 8;
+  }
+
+  body.nx-overflow-hidden {
+    nav h1 {
+      display: none;
+    }
+  }
+
+  @media (width >= 320px) {
+    body.nx-overflow-hidden {
+      nav h1 {
+        display: initial;
+      }
+    }
+  }
+
+  @media (width >= 256px) {
+    body:not(.nx-overflow-hidden) {
+      .nextra-search {
+        display: initial;
+        flex: 1;
+
+        .nx-z-10 {
+          z-index: 0;
+        }
+
+        .placeholder {
+          width: 6em;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+        }
+
+        div:has(ul.nextra-scrollbar) {
+          position: fixed;
+          top: 3.5em;
+          left: 0;
+          z-index: 8;
+          margin: 1em;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+input[type="checkbox"]:not(:disabled):hover {
+  cursor: pointer;
+}
+
+main ul > li > ul {
+  margin-top: 0 !important;
+}
+
+body a.nx-underline {
+  text-decoration-line: none;
+
+  &:active,
+  &:hover,
+  &:focus {
+    text-decoration-line: underline;
+  }
+}
+
+.nextra-menu-desktop li > button {
+  user-select: text;
+}
+
+:is(html[class~="dark"] .dark\:nx-text-primary-600) {
+  color: hsl(
+    var(--nextra-primary-hue) var(--nextra-primary-saturation) 55% /
+      var(--tw-text-opacity)
+  );
+}

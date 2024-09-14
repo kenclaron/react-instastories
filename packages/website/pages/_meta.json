@@ -1,0 +1,22 @@
+{
+  "#*": {
+    "title": "Home",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "layout": "full"
+    }
+  },
+  "index": {
+    "title": "Home",
+    "type": "page",
+    "display": "hidden",
+    "theme": {
+      "layout": "full"
+    }
+  },
+  "docs": {
+    "title": "Documentation",
+    "type": "page"
+  }
+}

@@ -1,0 +1,5 @@
+.instastories-viewer--entered:not([data-preset]) {
+  .prevent {
+    transition: none;
+  }
+}

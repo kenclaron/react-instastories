@@ -1,0 +1,47 @@
+@import "../../../../../../app/ui/system";
+
+dialog:global(.instastories-viewer):not([data-preset]) {
+  span.icon {
+    transition-duration: $time-tick;
+    transition-property: font-size;
+    transition-timing-function: ease;
+  }
+}
+
+dialog:global(.instastories-viewer):not([data-preset]),
+button:global(.instastories-preview):not([data-preset]) {
+  span.icon {
+    font-size: 3em;
+
+    @media (width >= 768px) {
+      font-size: 4em;
+    }
+
+    @media (width >= 920px) {
+      font-size: 5em;
+    }
+
+    @media (width >= 1280px) {
+      font-size: 6em;
+    }
+  }
+}
+
+dialog:global(.instastories-viewer--entered):not([data-preset]),
+dialog:global(.instastories-viewer--entering):not([data-preset]) {
+  span.icon {
+    font-size: 6em;
+
+    @media (width >= 768px) {
+      font-size: 6em;
+    }
+
+    @media (width >= 920px) {
+      font-size: 6em;
+    }
+
+    @media (width >= 1280px) {
+      font-size: 6em;
+    }
+  }
+}

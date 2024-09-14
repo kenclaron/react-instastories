@@ -32,7 +32,11 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm install
       - run: cd packages/base && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: cd packages/external && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - run: cd packages/presets && npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}

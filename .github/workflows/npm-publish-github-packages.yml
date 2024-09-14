@@ -35,12 +35,12 @@ jobs:
           registry-url: https://npm.pkg.github.com/
           scope: '@react-instastories'
       - run: npm install
-      - run: cd packages/base && npm run build && npm publish
+      - run: cd packages/base && npm run build && npm publish --registry=https://npm.pkg.github.com/@kenclaron
         env:
           NODE_AUTH_TOKEN: ${{secrets.PAT}}
-      - run: cd packages/external && npm run build && npm publish
+      - run: cd packages/external && npm run build && npm publish --registry=https://npm.pkg.github.com/@kenclaron
         env:
           NODE_AUTH_TOKEN: ${{secrets.PAT}}
-      - run: cd packages/presets && npm run build && npm publish
+      - run: cd packages/presets && npm run build && npm publish --registry=https://npm.pkg.github.com/@kenclaron
         env:
           NODE_AUTH_TOKEN: ${{secrets.PAT}}

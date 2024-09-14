@@ -7,6 +7,12 @@ on:
   release:
     types: [created]
 
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -28,12 +34,12 @@ jobs:
           node-version: 22
           registry-url: https://registry.npmjs.org/
       - run: npm install
-      - run: cd packages/base && npm publish
+      - run: cd packages/base && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: cd packages/external && npm publish
+      - run: cd packages/external && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-      - run: cd packages/presets && npm publish
+      - run: cd packages/presets && npm run build && npm publish --provenance --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}

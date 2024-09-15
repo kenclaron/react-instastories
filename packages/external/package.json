@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/external",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "External optional components for the next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",

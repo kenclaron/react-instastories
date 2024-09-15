@@ -21,6 +21,7 @@ export default [
       "**/.next",
       "**/build/",
       "**/dist/",
+      "**/out/",
       "**/node_modules/",
       "**/.snapshots/",
       "**/*.min.js"

@@ -27,10 +27,7 @@ jobs:
           cache: "npm"
       - run: npm install
       - run: npm test
-      - run: npm run build:base
-      - run: npm run build:external
-      - run: npm run build:presets
-      - run: cp -R packages/base node_modules/@react-instastories/base
-      - run: cp -R packages/external node_modules/@react-instastories/external
-      - run: cp -R packages/presets node_modules/@react-instastories/presets
+      - run: cd packages/base && npm run build && npm link @react-instastories/base
+      - run: cd packages/external && npm run build && npm link @react-instastories/external
+      - run: cd packages/presets && npm run build && npm link @react-instastories/presets
       - run: npm run build:website

@@ -3,7 +3,7 @@ import {
   type PagesProps,
   type PreviewProps,
   type StoryProps
-} from "@react-instastories/base/components";
+} from "@react-instastories/base";
 
 export interface IStory {
   readonly name: string;

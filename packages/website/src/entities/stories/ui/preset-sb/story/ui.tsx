@@ -41,13 +41,20 @@ export function Story({
       <picture className={styles["background"]}>
         <Image
           alt="Background Image"
+          height={960}
           src="/stories/sb/background.svg"
           style={{ filter: `hue-rotate(${hue}deg)` }}
+          width={540}
         />
       </picture>
       <address>
         <picture className={styles["logo"]}>
-          <Image alt="Icon" src={`/stories/sb/${id}.svg`} />
+          <Image
+            alt="Icon"
+            height={36}
+            src={`/stories/sb/${id}.svg`}
+            width={36}
+          />
         </picture>
         <span>{author}</span>
       </address>
@@ -66,11 +73,21 @@ export function Story({
         >
           {userStory?.liked ? (
             <picture>
-              <Image alt="Story liked" src="/stories/shared/liked.svg" />
+              <Image
+                alt="Story liked"
+                height={32}
+                src="/stories/shared/liked.svg"
+                width={32}
+              />
             </picture>
           ) : (
             <picture>
-              <Image alt="Story unliked" src="/stories/shared/unliked.svg" />
+              <Image
+                alt="Story unliked"
+                height={32}
+                src="/stories/shared/unliked.svg"
+                width={32}
+              />
             </picture>
           )}
         </button>

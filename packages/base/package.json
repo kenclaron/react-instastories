@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/base",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "The next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -40,16 +40,16 @@
     "build": "microbundle --jsx React.createElement --css-modules \"instastories-[local]\""
   },
   "peerDependencies": {
-    "react-dom": "file:../../node_modules/react-dom",
-    "react": "file:../../node_modules/react"
+    "react": "^16.14.0 || ^17 || ^18 || ^19",
+    "react-dom": "^16.14.0 || ^17 || ^18 || ^19"
   },
   "devDependencies": {
-    "@types/node": "file:../../node_modules/@types/node",
-    "@types/react-dom": "file:../../node_modules/@types/react-dom",
-    "@types/react": "file:../../node_modules/@types/react",
-    "microbundle": "file:../../node_modules/microbundle/dist",
-    "sass": "file:../../node_modules/sass",
-    "typescript": "file:../../node_modules/typescript"
+    "@types/node": "^22.5.5",
+    "@types/react": "^18.3.5",
+    "@types/react-dom": "^18.3.0",
+    "microbundle": "^0.15.1",
+    "sass": "^1.78.0",
+    "typescript": "^5.5.4"
   },
   "files": [
     "dist"

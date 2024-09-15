@@ -76,6 +76,7 @@ $is-preset-ig-mobile-width: 768px;
 
   & > div {
     display: flex;
+    gap: 0.5em;
   }
 
   a:global(.action-item),

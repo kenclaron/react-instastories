@@ -170,7 +170,12 @@ export function Story({
             onClick={() => stories.show(story.index)}
           >
             <picture>
-              <Image alt="Icon" src={`/stories/ig/${id}.svg`} />
+              <Image
+                alt="Icon"
+                height={78}
+                src={`/stories/ig/${id}.svg`}
+                width={78}
+              />
             </picture>
             <div>
               <p>{author}</p>
@@ -182,7 +187,12 @@ export function Story({
       ) : (
         <address>
           <picture className={styles["logo"]}>
-            <Image alt="Icon" src={`/stories/ig/${id}.svg`} />
+            <Image
+              alt="Icon"
+              height={78}
+              src={`/stories/ig/${id}.svg`}
+              width={78}
+            />
           </picture>
           <span>{author}</span>
           <time
@@ -204,8 +214,10 @@ export function Story({
       <picture className={styles["background"]}>
         <Image
           alt="Background Image"
+          height={960}
           src="/stories/ig/background.svg"
           style={{ filter: `hue-rotate(${hue}deg)` }}
+          width={540}
         />
       </picture>
       {title && <h1 className={styles["title"]}>{title}</h1>}
@@ -232,13 +244,20 @@ export function Story({
               >
                 {userStory?.liked ? (
                   <picture>
-                    <Image alt="Story liked" src="/stories/shared/liked.svg" />
+                    <Image
+                      alt="Story liked"
+                      height={32}
+                      src="/stories/shared/liked.svg"
+                      width={32}
+                    />
                   </picture>
                 ) : (
                   <picture>
                     <Image
                       alt="Story unliked"
+                      height={32}
                       src="/stories/shared/unliked.svg"
+                      width={32}
                     />
                   </picture>
                 )}
@@ -249,7 +268,12 @@ export function Story({
                 title="Send Mail"
               >
                 <picture>
-                  <Image alt="Send" src="/stories/shared/send.svg" />
+                  <Image
+                    alt="Send"
+                    height={32}
+                    src="/stories/shared/send.svg"
+                    width={32}
+                  />
                 </picture>
               </a>
             </div>

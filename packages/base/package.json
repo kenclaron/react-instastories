@@ -28,7 +28,7 @@
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "default": "./dist/index.modern.js"
+      "default": "./dist/index.modern.mjs"
     },
     "./*.css": {
       "import": "./dist/*.css",

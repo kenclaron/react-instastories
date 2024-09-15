@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/external",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "External optional components for the next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -25,7 +25,11 @@
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "exports": {
-    ".": "./dist/index.modern.js",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "default": "./dist/index.modern.js"
+    },
     "./*.css": {
       "import": "./dist/*.css",
       "require": "./dist/*.css"

@@ -27,7 +27,7 @@ jobs:
           cache: "npm"
       - run: npm install
       - run: npm test
-      - run: cd packages/base && npm run build && npm link @react-instastories/base
-      - run: cd packages/external && npm run build && npm link @react-instastories/external
-      - run: cd packages/presets && npm run build && npm link @react-instastories/presets
-      - run: npm run build:website
+      - run: cd packages/base && npm run build
+      - run: cd packages/external && npm install && npm run build
+      - run: cd packages/presets && npm run build
+      - run: cd packages/presets && npm install && npm run build

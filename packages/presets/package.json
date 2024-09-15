@@ -20,6 +20,12 @@
     "yarn": ">=3",
     "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
   },
+  "exports": {
+    "./*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
+    }
+  },
   "scripts": {
     "start": "sass --watch ./src:./dist",
     "build": "sass ./src:./dist"

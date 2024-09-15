@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kenclaron/react-instastories.git",
+    "url": "https://github.com/kenclaron/react-instastories",
     "directory": "packages/presets"
   },
   "bugs": {

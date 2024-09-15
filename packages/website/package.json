@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kenclaron/react-instastories.git",
+    "url": "https://github.com/kenclaron/react-instastories",
     "directory": "packages/website"
   },
   "bugs": {
@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@react-aria/toolbar": "^3.0.0-beta.8",
-    "@react-instastories/base": "^1.0.3",
-    "@react-instastories/external": "^1.0.3",
-    "@react-instastories/presets": "^1.0.3",
+    "@react-instastories/base": "^1.0.4",
+    "@react-instastories/external": "^1.0.4",
+    "@react-instastories/presets": "^1.0.4",
     "classnames": "^2.5.1",
     "material-icons": "^1.13.12",
     "next": "^14.2.8",

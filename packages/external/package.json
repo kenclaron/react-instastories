@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kenclaron/react-instastories.git",
+    "url": "https://github.com/kenclaron/react-instastories",
     "directory": "packages/external"
   },
   "bugs": {
@@ -40,7 +40,7 @@
     "build": "microbundle --jsx React.createElement --css-modules \"instastories-[local]\" --globals @react-instastories/base=base"
   },
   "peerDependencies": {
-    "@react-instastories/base": "^1.0.3",
+    "@react-instastories/base": "^1.0.4",
     "react": "^16.14.0 || ^17 || ^18 || ^19",
     "react-dom": "^16.14.0 || ^17 || ^18 || ^19"
   },

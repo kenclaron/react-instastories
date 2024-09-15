@@ -27,7 +27,6 @@ jobs:
           cache: "npm"
       - run: npm install
       - run: npm test
-      - run: cd packages/base && npm run build
-      - run: cd packages/external && npm install && npm run build
-      - run: cd packages/presets && npm run build
-      - run: cd packages/website && npm install && npm run build
+      - run: npm run build:base
+      - run: npm run build:external
+      - run: npm run build:presets

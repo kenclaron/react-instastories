@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/website",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Demonstration and documentation website with @react-instastories libraries",
   "private": true,
   "author": {
@@ -11,7 +11,7 @@
   "license": "UNLICENSED",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kenclaron/react-instastories",
+    "url": "git+https://github.com/kenclaron/react-instastories.git",
     "directory": "packages/website"
   },
   "bugs": {

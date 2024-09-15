@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/presets",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Style presets for the next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -10,7 +10,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kenclaron/react-instastories",
+    "url": "git+https://github.com/kenclaron/react-instastories.git",
     "directory": "packages/presets"
   },
   "bugs": {

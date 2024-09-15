@@ -1,5 +1,11 @@
 /* Main components */
 export {
+  PageProps,
+  PagesProps,
+  PreviewProps,
+  StoryProps,
+  ViewerProps,
+  InstaStoriesProps,
   Configurable,
   InstaStories,
   Page,

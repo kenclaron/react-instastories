@@ -31,7 +31,7 @@
     "build": "sass ./src:./dist"
   },
   "devDependencies": {
-    "sass": "file:../../node_modules/sass"
+    "sass": "^1.78.0"
   },
   "files": [
     "dist"

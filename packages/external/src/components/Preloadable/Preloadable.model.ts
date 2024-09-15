@@ -1,4 +1,4 @@
-import { PageProps, StoryProps } from "@react-instastories/base/components";
+import { PageProps, StoryProps } from "@react-instastories/base";
 
 export interface PreloadableProps {
   /**

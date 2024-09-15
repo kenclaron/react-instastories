@@ -16,7 +16,7 @@ const config: DocsThemeConfig = {
   project: {
     link: project.repository.url
   },
-  docsRepositoryBase: `${pkg.repository.url}/${pkg.repository.directory}`,
+  docsRepositoryBase: `${pkg.repository.url}/blob/main/${pkg.repository.directory}`,
   footer: {
     component: <Footer />
   },

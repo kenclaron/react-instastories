@@ -28,9 +28,9 @@
   },
   "dependencies": {
     "@react-aria/toolbar": "^3.0.0-beta.8",
-    "@react-instastories/base": "^1.0.4",
-    "@react-instastories/external": "^1.0.4",
-    "@react-instastories/presets": "^1.0.4",
+    "@react-instastories/base": "file:../../packages/base/dist",
+    "@react-instastories/external": "file:../../packages/external/dist",
+    "@react-instastories/presets": "file:../../packages/presets/dist",
     "classnames": "^2.5.1",
     "material-icons": "^1.13.12",
     "next": "^14.2.8",

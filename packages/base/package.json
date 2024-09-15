@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/base",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "The next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -25,7 +25,11 @@
   "module": "dist/index.module.js",
   "unpkg": "dist/index.umd.js",
   "exports": {
-    ".": "./dist/index.modern.js"
+    ".": "./dist/index.modern.js",
+    "./*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
+    }
   },
   "scripts": {
     "start": "microbundle watch --jsx React.createElement --css-modules \"instastories-[local]\" --no-compress",

@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/presets",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Style presets for the next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -19,6 +19,12 @@
   "engines": {
     "yarn": ">=3",
     "node": ">=18.18.0 || ^20.9.0 || >=21.1.0"
+  },
+  "exports": {
+    "./*.css": {
+      "import": "./dist/*.css",
+      "require": "./dist/*.css"
+    }
   },
   "scripts": {
     "start": "sass --watch ./src:./dist",

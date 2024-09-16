@@ -31,6 +31,22 @@ $is-preset-ig-mobile-width: 768px;
   }
 }
 
+.form {
+  position: absolute;
+  bottom: 0;
+  left: -0.5em;
+  width: calc(100% + 1em);
+  height: 4em;
+
+  @media (width >= $is-preset-ig-mobile-width) {
+    position: initial;
+    bottom: initial;
+    left: initial;
+    width: initial;
+    height: initial;
+  }
+}
+
 .container {
   display: grid;
   position: absolute;
@@ -53,6 +69,11 @@ $is-preset-ig-mobile-width: 768px;
   button,
   a {
     transition: var(--is-preset-ig-transition-smooth);
+  }
+
+  button > picture {
+    width: 1em;
+    height: 1em;
   }
 
   input {
@@ -83,6 +104,7 @@ $is-preset-ig-mobile-width: 768px;
   button:global(.action-item) {
     display: inline-block;
     order: 1;
+    background-color: transparent;
     padding: 0.5em;
     aspect-ratio: 1 / 1;
     width: 2.5em;

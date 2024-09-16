@@ -2,8 +2,8 @@
   "createdAt": 2024,
   "description": "React library for improving user experience in web applications. Showcases and documentation for the next generation of React Stories Library.",
   "files": {
-    "codeOfConduct": "CODE_OF_CONDUCT.md",
-    "readme": "README.md"
+    "codeOfConduct": "blob/main/CODE_OF_CONDUCT.md",
+    "readme": "blob/main/README.md"
   },
   "image": {
     "type": "image/jpeg",

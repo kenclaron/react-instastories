@@ -226,7 +226,7 @@ export function Story({
       </div>
 
       {!desktop || story.current ? (
-        <form onSubmit={onSubmit}>
+        <form className={styles["form"]} onSubmit={onSubmit}>
           <div className={styles["container"]}>
             <input
               ref={inputRef}
@@ -246,18 +246,18 @@ export function Story({
                   <picture>
                     <Image
                       alt="Story liked"
-                      height={32}
+                      height={24}
                       src="/stories/shared/liked.svg"
-                      width={32}
+                      width={24}
                     />
                   </picture>
                 ) : (
                   <picture>
                     <Image
                       alt="Story unliked"
-                      height={32}
+                      height={24}
                       src="/stories/shared/unliked.svg"
-                      width={32}
+                      width={24}
                     />
                   </picture>
                 )}
@@ -270,9 +270,9 @@ export function Story({
                 <picture>
                   <Image
                     alt="Send"
-                    height={32}
+                    height={24}
                     src="/stories/shared/send.svg"
-                    width={32}
+                    width={24}
                   />
                 </picture>
               </a>

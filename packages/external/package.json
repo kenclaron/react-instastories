@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/external",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "External optional components for the next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -40,16 +40,16 @@
     "build": "microbundle --jsx React.createElement --css-modules \"instastories-[local]\" --globals @react-instastories/base=base"
   },
   "peerDependencies": {
-    "@react-instastories/base": "^1.0.4",
+    "@react-instastories/base": "^1.0.6",
     "react": "^16.14.0 || ^17 || ^18 || ^19",
     "react-dom": "^16.14.0 || ^17 || ^18 || ^19"
   },
   "devDependencies": {
     "@types/node": "^22.5.5",
-    "@types/react": "^18.3.5",
+    "@types/react": "^18.3.8",
     "@types/react-dom": "^18.3.0",
     "microbundle": "^0.15.1",
-    "sass": "^1.78.0",
+    "sass": "<=1.78.0",
     "typescript": "^5.5.4"
   },
   "files": [

@@ -158,11 +158,11 @@ npm run build:external # builds "packages/external"
 npm run build:website  # builds "packages/website"
 ```
 
-> Build results are in `dist` folders of packages.
+> Build results are in `dist` and `out` folders of packages.
 
 ### Serve website
 
-> Requires builded website in `dist` folder.
+> Requires builded website in `out` folder.
 
 ```bash
 npm run serve:website  # serves "packages/website"

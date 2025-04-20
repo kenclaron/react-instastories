@@ -1,5 +1,8 @@
 export function getSourceByBasePath(src: string) {
-  if (!process.env.NEXT_PUBLIC_BASE_PATH) {
+  if (
+    !process.env.NEXT_PUBLIC_BASE_PATH ||
+    process.env.NEXT_PUBLIC_BASE_PATH === "/"
+  ) {
     return src;
   }
 

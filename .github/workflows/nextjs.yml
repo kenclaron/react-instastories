@@ -69,6 +69,33 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Check for .well-known availability
+        id: well-known-check
+        # perform secret check & put boolean result as an output
+        shell: bash
+        run: |
+          if [ "${{ secrets.WELL_KNOWN_FILES }}" != '' ]; then
+            echo "available=true" >> $GITHUB_OUTPUT;
+          else
+            echo "available=false" >> $GITHUB_OUTPUT;
+          fi
+      - name: Create multiple .well-known files with validation
+        if: ${{ steps.well-known-check.outputs.available == 'true' }}
+        env:
+          WELL_KNOWN_FILES: ${{ secrets.WELL_KNOWN_FILES }}
+        run: |
+          mkdir -p packages/website/public/.well-known
+      
+          # Save content into JSON file
+          echo "$WELL_KNOWN_FILES" > .well-known-content.json
+      
+          # Check and write content in files
+          jq -r 'to_entries[] | select(.value != "") | "\(.key) \(.value)"' tmp_files.json | while read name content; do
+            echo "$content" > packages/website/public/.well-known/$name
+          done
+      
+          # Remove temp JSON file
+          rm .well-known-content.json
       - name: Build with Next.js
         run: npm run build
         env:

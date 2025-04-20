@@ -4,7 +4,10 @@ const withNextra = require("nextra")({
 });
 
 module.exports = withNextra({
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH,
+  basePath:
+    process.env.NEXT_PUBLIC_BASE_PATH !== "/"
+      ? process.env.NEXT_PUBLIC_BASE_PATH
+      : undefined,
   output: "export",
   images: {
     unoptimized: process.env.NODE_ENV === "production"

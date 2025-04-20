@@ -90,7 +90,7 @@ jobs:
           echo "$WELL_KNOWN_FILES" > .well-known-content.json
       
           # Check and write content in files
-          jq -r 'to_entries[] | select(.value != "") | "\(.key) \(.value)"' tmp_files.json | while read name content; do
+          jq -r 'to_entries[] | select(.value != "") | "\(.key) \(.value)"' .well-known-content.json | while read name content; do
             echo "$content" > packages/website/public/.well-known/$name
           done
       

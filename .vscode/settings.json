@@ -5,6 +5,5 @@
   "editor.rulers": [80],
   "css.validate": false,
   "scss.validate": false,
-  "stylelint.validate": ["css", "scss"],
-  "typescript.tsdk": "node_modules\\typescript\\lib"
+  "stylelint.validate": ["css", "scss"]
 }

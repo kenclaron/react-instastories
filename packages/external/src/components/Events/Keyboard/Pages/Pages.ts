@@ -8,7 +8,7 @@ export function Pages({ children }: KeyboardEventProps) {
   const context = usePagesContext();
   useKeyboardMovement(context, { previous: "ArrowLeft", next: "ArrowRight" });
 
-  return children;
+  return children as JSX.Element;
 }
 
 Pages.displayName = "Events.Keyboard.Pages";

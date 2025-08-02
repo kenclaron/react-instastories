@@ -88,7 +88,7 @@ export function Pages({ element, children }: ChangeStoryPointerEventProps) {
     };
   }, [element, desktop, onClick, onPointerDown, onPointerMove, uncapture]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 export default Pages;

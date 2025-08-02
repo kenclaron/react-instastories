@@ -79,8 +79,8 @@ $is-preset-ig-mobile-width: 768px;
     pointer-events: none;
 
     .instastories-story:has(
-        ~ .instastories-story:not(.instastories-story--disabled)
-      ) {
+      ~ .instastories-story:not(.instastories-story--disabled)
+    ) {
       transform: rotateY(-90deg) translate(0%, 0%)
         translateZ(calc(47.85dvh / 2));
       opacity: 0;
@@ -114,8 +114,8 @@ $is-preset-ig-mobile-width: 768px;
       padding-block: 2.5em;
 
       .instastories-story:has(
-          ~ .instastories-story:not(.instastories-story--disabled)
-        ) {
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ) {
         transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%);
         opacity: 1;
         transition: var(--is-preset-ig-transition-all);

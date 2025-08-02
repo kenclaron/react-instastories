@@ -69,14 +69,14 @@ function getHTMLProps(props: StoryProps | PagesProps = {}) {
  * @returns A memoized list of React elements to render.
  */
 export function useContentChildren(
-  ref: React.RefObject<HTMLDivElement>,
+  ref: React.RefObject<HTMLDivElement | null>,
   Events: React.FunctionComponent<React.PropsWithChildren>
 ) {
   const viewer = useViewerContext();
   const stories = useStoriesContext();
   const pages = usePagesContext();
 
-  const previous = React.useRef<{ page: number; story: number }>();
+  const previous = React.useRef<{ page: number; story: number }>(undefined);
 
   React.useEffect(() => {
     previous.current = { page: pages.current, story: stories.current };

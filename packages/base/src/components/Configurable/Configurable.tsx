@@ -28,7 +28,7 @@ interface ComponentProps<T extends Configurable = Configurable>
  * @returns The rendered configurable children elements.
  */
 export function Container({ children }: Pick<ComponentProps, "children">) {
-  return children;
+  return children as JSX.Element | null;
 }
 
 /**

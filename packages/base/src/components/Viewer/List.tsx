@@ -33,7 +33,12 @@ interface ListProps {
  *
  * @returns A React component that renders a list of Page components.
  */
-export function List({ pages, story, start, previous }: ListProps) {
+export function List({
+  pages,
+  story,
+  start,
+  previous
+}: ListProps): JSX.Element | null {
   const isPrevious = React.useCallback(
     (page: number) => previous?.story === story && previous.page === page,
     [previous, story]
@@ -56,24 +61,31 @@ export function List({ pages, story, start, previous }: ListProps) {
     });
   }
 
-  return pages.map((page, key) => {
-    if (!page) return null;
+  return (
+    <React.Fragment>
+      {pages.map((page, key) => {
+        if (!page) return null;
 
-    const previous = isPrevious(key);
-    const priority = isPriority(key);
-    const first = key === 0;
+        const previous = isPrevious(key);
+        const priority = isPriority(key);
+        const first = key === 0;
 
-    if (previous || priority || first)
-      return React.cloneElement(page, {
-        ...page.props,
-        key,
-        preload: true,
-        priority
-      });
-    else if (page.props?.preload)
-      return React.cloneElement(page, { ...page.props, key });
-    else return null;
-  });
+        if (previous || priority || first)
+          return React.cloneElement(page, {
+            ...page.props,
+            key,
+            preload: true,
+            priority
+          });
+        else if (page.props?.preload)
+          return React.cloneElement(page, {
+            ...page.props,
+            key
+          });
+        else return null;
+      })}
+    </React.Fragment>
+  );
 }
 
 export default List;

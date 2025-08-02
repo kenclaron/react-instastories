@@ -27,12 +27,15 @@ function Template({ children, name }: PresetProps) {
 
 function Stories() {
   return React.useMemo(
-    () =>
-      Object.entries(APPS).map(([name, { Component }]) => (
-        <Template key={name} name={name}>
-          <Component />
-        </Template>
-      )),
+    () => (
+      <>
+        {Object.entries(APPS).map(([name, { Component }]) => (
+          <Template key={name} name={name}>
+            <Component />
+          </Template>
+        ))}
+      </>
+    ),
     [APPS]
   );
 }

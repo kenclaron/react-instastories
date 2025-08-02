@@ -39,6 +39,14 @@
     font-size: 1.25em;
     user-select: none;
 
+    &:global(.action-item--tertiary) {
+      background-color: color-mix(
+        in srgb,
+        transparent 60%,
+        var(--action-item-color--primary)
+      );
+    }
+
     &:hover {
       transform: scale(1.1);
     }

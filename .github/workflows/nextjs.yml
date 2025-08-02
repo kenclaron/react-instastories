@@ -85,15 +85,15 @@ jobs:
           WELL_KNOWN_FILES: ${{ secrets.WELL_KNOWN_FILES }}
         run: |
           mkdir -p packages/website/public/.well-known
-      
+
           # Save content into JSON file
           echo "$WELL_KNOWN_FILES" > .well-known-content.json
-      
+
           # Check and write content in files
           jq -r 'to_entries[] | select(.value != "") | "\(.key) \(.value)"' .well-known-content.json | while read name content; do
             echo "$content" > packages/website/public/.well-known/$name
           done
-      
+
           # Remove temp JSON file
           rm .well-known-content.json
       - name: Build with Next.js

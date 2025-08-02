@@ -62,7 +62,7 @@ export function Story({
       <p className={styles["text"]}>{description}</p>
       <div className={styles["container"]}>
         <a
-          className="dark nx-text-center action-item action-item--primary"
+          className="nx-text-center action-item action-item--primary"
           href="/docs"
         >
           Learn more about react-instastories

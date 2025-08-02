@@ -1,23 +1,9 @@
 .light {
   --skeleton-background: #fff3;
-  --skeleton-background-shimmer: linear-gradient(
-    var(--skeleton-background-deg),
-    transparent 0%,
-    #fff2 20%,
-    #fff4 60%,
-    transparent 100%
-  );
 }
 
 .dark {
   --skeleton-background: #3333;
-  --skeleton-background-shimmer: linear-gradient(
-    var(--skeleton-background-deg),
-    transparent 0%,
-    #0002 20%,
-    #0004 60%,
-    transparent 100%
-  );
 }
 
 .skeleton {
@@ -29,6 +15,14 @@
   overflow: hidden;
   pointer-events: none;
 
+  --skeleton-background-shimmer: linear-gradient(
+    var(--skeleton-background-deg),
+    transparent 0%,
+    #fff2 20%,
+    #fff4 60%,
+    transparent 100%
+  );
+
   &::after {
     position: absolute;
     inset: 0;
@@ -39,6 +33,16 @@
   }
 }
 
+.dark .skeleton {
+  --skeleton-background-shimmer: linear-gradient(
+    var(--skeleton-background-deg),
+    transparent 0%,
+    #0002 20%,
+    #0004 60%,
+    transparent 100%
+  );
+}
+
 .skeleton,
 .skeleton--horizontal {
   --skeleton-background-deg: 90deg;
@@ -46,12 +50,6 @@
   &::after {
     transform: translateX(-100%);
     animation: shimmer-horizontal 5s infinite;
-  }
-
-  @keyframes shimmer-horizontal {
-    100% {
-      transform: translateX(100%);
-    }
   }
 }
 
@@ -62,10 +60,16 @@
     transform: translateY(-100%);
     animation: shimmer-vertical 5s infinite;
   }
+}
 
-  @keyframes shimmer-vertical {
-    100% {
-      transform: translateY(100%);
-    }
+@keyframes shimmer-horizontal {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmer-vertical {
+  100% {
+    transform: translateY(100%);
   }
 }

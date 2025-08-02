@@ -1,7 +1,7 @@
 {
   "name": "@react-instastories/website",
   "version": "1.0.7",
-  "description": "Demonstration and documentation website with @react-instastories libraries",
+  "description": "Demonstration and documentation website with @react-instastories libraries.",
   "private": true,
   "author": {
     "name": "Dmitry Britov",

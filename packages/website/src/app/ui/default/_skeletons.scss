@@ -15,7 +15,6 @@
   overflow: hidden;
   pointer-events: none;
 
-  /* shimmer зависит от deg → определяем здесь */
   --skeleton-background-shimmer: linear-gradient(
     var(--skeleton-background-deg),
     transparent 0%,

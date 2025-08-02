@@ -34,6 +34,13 @@ body {
   }
 }
 
+.dark .instastories-stories:not([data-preset]) > button.instastories-preview {
+  &:hover,
+  &:active {
+    outline: 0.1em solid #fff9;
+  }
+}
+
 .instastories-stories:not([data-preset]) > button.instastories-preview,
 .instastories-viewer:not([data-preset]) .instastories-button-stories-control,
 .instastories-viewer:not([data-preset]) .instastories-button-viewer-control,

@@ -108,6 +108,13 @@
   }
 }
 
+:global(.dark) .container .stories > button:global(.instastories-preview) {
+  &:hover,
+  &:active {
+    outline: none;
+  }
+}
+
 :global(.dark) .container .stories > button {
   background-color: #fff8;
   color: black;

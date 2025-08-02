@@ -20,7 +20,7 @@ export function SberPrimeStories() {
           animation: "immediately",
           preset: "instastories-preset-sb",
           duration: 15000,
-          viewer: { props: { className: "light" } }
+          viewer: { props: { className: "dark" } }
         }}
       >
         <Configurable.Container>{configurable}</Configurable.Container>

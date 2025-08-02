@@ -32,7 +32,7 @@ export function AutoClose({ children }: AutoCloseEventProps) {
     viewer.close();
   }, [stories.canNext, pages.canNext, timer.expired, viewer.close]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 AutoClose.displayName = "Events.Mount.AutoClose";

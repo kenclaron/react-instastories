@@ -274,7 +274,7 @@ export function Stories({ element, children }: MovementPointerEventProps) {
     };
   }, [viewer.transition.step, onBlur, onPointerMove, onPointerUp]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Stories.displayName = "Events.Pointer.Stories";

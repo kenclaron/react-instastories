@@ -25,7 +25,7 @@ export function Interactive({ element, children }: InteractiveEventProps) {
     return () => interactive.enable(items);
   }, [element]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Interactive.displayName = "Events.Mount.Interactive";

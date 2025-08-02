@@ -33,7 +33,7 @@ export function Timer({ children }: TimerEventProps) {
     };
   }, [viewer.shown, timer.pause, timer.start]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Timer.displayName = "Events.Focus.Timer";

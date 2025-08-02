@@ -17,7 +17,7 @@ export function Ready({ children }: ReadyEventProps) {
     };
   }, []);
 
-  return children;
+  return children as JSX.Element;
 }
 
 export default Ready;

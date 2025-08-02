@@ -5,7 +5,7 @@ import React from "react";
 const CLASSNAME = "transitions-enter-done";
 
 export function usePreventShowTransition(
-  refs?: React.RefObject<HTMLElement>[]
+  refs?: React.RefObject<HTMLElement | null>[]
 ) {
   const viewer = useViewerContext();
 

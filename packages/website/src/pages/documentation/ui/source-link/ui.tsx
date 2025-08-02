@@ -7,10 +7,17 @@ interface SourceLinkProps extends React.PropsWithChildren {
 
 export function SourceLink({ children, path }: SourceLinkProps) {
   const { project } = useConfig();
+  const href = React.useMemo(
+    () =>
+      [project.link, "/tree/", process.env.NEXT_PUBLIC_BRANCH_NAME, path].join(
+        ""
+      ),
+    [project.link, path]
+  );
 
   return (
-    <Link className="nx-inline-flex" href={[project.link, path].join("")}>
-      {children}
+    <Link className="nx-inline-flex" href={href}>
+      <>{children}</>
     </Link>
   );
 }

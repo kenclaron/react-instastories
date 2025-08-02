@@ -56,7 +56,6 @@ function CurrentStep() {
 When the viewer is opening, the following class names are applied to indicate the state of the viewer:
 
 1. `TransitionStep.Entering` (classname: `.instastories-viewer--entering`)
-
    - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
    - This class is applied when the viewer starts to open. You can use this class to define the initial styles or animations for the opening process.
    - Typically used to set up the starting point for the transition or animation.
@@ -71,13 +70,11 @@ When the viewer is opening, the following class names are applied to indicate th
 When the viewer is closing, the following `classNames` are used to represent the state of the viewer:
 
 1. `TransitionStep.Exiting` (classname: `.instastories-viewer--exiting`)
-
    - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
    - This class is applied when the viewer starts to close. It helps in defining the initial styles or animations for the closing process.
    - Typically used to initiate the closing transition or animation.
 
 2. `TransitionStep.Exited` (classname: `.instastories-viewer--exited`)
-
    - This class prevented when [animation](/docs/base/models/animation) prop in config equals to `immediately`
    - This class is applied after the closing animation or transition ends, specifically after the `transitionend` event with `opacity` or any `animationend` event.
    - Use this class to define the final styles or animations that should be applied once the viewer is fully closed.

@@ -38,7 +38,7 @@ export function Close({ children }: KeyboardEventProps) {
     };
   }, [viewer.shown, onKeydown]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Close.displayName = "Events.Keyboard.Close";

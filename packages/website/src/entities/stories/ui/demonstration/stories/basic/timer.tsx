@@ -4,6 +4,8 @@ import React from "react";
 
 import { Card, Preview } from "../../components";
 
+import { preventEvent } from "../../../../../../shared";
+
 function Timer() {
   const pages = usePagesContext();
 
@@ -22,6 +24,16 @@ function Timer() {
   }, [timer.time]);
 
   const ref = React.useRef<HTMLButtonElement>(null);
+
+  React.useEffect(() => {
+    ref.current?.addEventListener("pointerdown", preventEvent);
+    ref.current?.addEventListener("pointerup", preventEvent);
+
+    return () => {
+      ref.current?.removeEventListener("pointerdown", preventEvent);
+      ref.current?.removeEventListener("pointerup", preventEvent);
+    };
+  }, [ref]);
 
   const changeStateTimer = React.useCallback(() => {
     if (timer.active) timer.pause();

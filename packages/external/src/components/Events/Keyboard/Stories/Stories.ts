@@ -8,7 +8,7 @@ export function Stories({ children }: KeyboardEventProps) {
   const context = useStoriesContext();
   useKeyboardMovement(context, { previous: "ArrowDown", next: "ArrowUp" });
 
-  return children;
+  return children as JSX.Element;
 }
 
 Stories.displayName = "Events.Keyboard.Stories";

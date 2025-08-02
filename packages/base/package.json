@@ -1,6 +1,6 @@
 {
   "name": "@react-instastories/base",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "The next generation of React Stories Library.",
   "author": {
     "name": "Dmitry Britov",
@@ -44,12 +44,12 @@
     "react-dom": "^16.14.0 || ^17 || ^18 || ^19"
   },
   "devDependencies": {
-    "@types/node": "^22.5.5",
-    "@types/react": "^18.3.8",
-    "@types/react-dom": "^18.3.0",
+    "@types/node": "^24.1.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
     "microbundle": "^0.15.1",
     "sass": "<=1.78.0",
-    "typescript": "^5.5.4"
+    "typescript": "^5.8.3"
   },
   "files": [
     "dist"

@@ -70,7 +70,7 @@ export function Timer({ element, children }: TimerEventProps) {
     };
   }, [element, onPointerDown, onPointerUp, onPointerLeave]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Timer.displayName = "Events.Pointer.Timer";

@@ -67,7 +67,7 @@ function useSection<T extends Configurable>(): Section<T> {
     () =>
       state?.children
         ? function Configurable() {
-            return state?.children;
+            return state?.children as JSX.Element | null;
           }
         : null,
     [state?.children]

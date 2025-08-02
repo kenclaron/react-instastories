@@ -244,7 +244,7 @@ export function Close({ element, children }: ClosePointerEventProps) {
     };
   }, [viewer.transition.step, onKeydown]);
 
-  return children;
+  return children as JSX.Element;
 }
 
 Close.displayName = "Events.Pointer.Close";

@@ -28,8 +28,9 @@ $is-preset-tg-mobile-width: 600px;
   --is-preset-tg-background: #000e;
   --is-preset-tg-transition-all: all 0.4s ease;
   --is-preset-tg-transition-opacity: opacity 0.2s ease;
-  --is-preset-tg-transition-transformation: transform 0.4s ease, width 0.4s ease,
-    height 0.4s ease, left 0.4s ease, top 0.4s ease, opacity 0.2s ease;
+  --is-preset-tg-transition-transformation:
+    transform 0.4s ease, width 0.4s ease, height 0.4s ease, left 0.4s ease,
+    top 0.4s ease, opacity 0.2s ease;
 }
 
 [data-preset="instastories-preset-tg"].instastories-viewer {
@@ -72,8 +73,8 @@ $is-preset-tg-mobile-width: 600px;
 
   &--exiting .instastories-viewer-content {
     .instastories-story:has(
-        ~ .instastories-story:not(.instastories-story--disabled)
-      ),
+      ~ .instastories-story:not(.instastories-story--disabled)
+    ),
     .instastories-story + .instastories-story--disabled {
       position: fixed !important;
       top: 50% !important;
@@ -90,8 +91,8 @@ $is-preset-tg-mobile-width: 600px;
     }
 
     .instastories-story:has(
-        ~ .instastories-story:not(.instastories-story--disabled)
-      ) {
+      ~ .instastories-story:not(.instastories-story--disabled)
+    ) {
       transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%) !important;
     }
 
@@ -112,8 +113,8 @@ $is-preset-tg-mobile-width: 600px;
     pointer-events: none;
 
     .instastories-story:has(
-        ~ .instastories-story:not(.instastories-story--disabled)
-      ) {
+      ~ .instastories-story:not(.instastories-story--disabled)
+    ) {
       opacity: 0;
       z-index: -1;
     }
@@ -133,8 +134,8 @@ $is-preset-tg-mobile-width: 600px;
       padding-block: 2.5em;
 
       .instastories-story:has(
-          ~ .instastories-story:not(.instastories-story--disabled)
-        ) {
+        ~ .instastories-story:not(.instastories-story--disabled)
+      ) {
         transform: scale(0.4) translate(calc(-300% - 8em - 1.25em), -125%);
         opacity: 1;
         transition: var(--is-preset-tg-transition-all);

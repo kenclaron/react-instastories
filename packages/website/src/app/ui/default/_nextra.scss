@@ -40,8 +40,8 @@ html,
 body {
   overflow-x: clip;
 
-  &:has(.instastories-viewer:not([data-preset])) {
-    overflow: clip;
+  &:has(.instastories-viewer) {
+    overflow: clip !important;
   }
 
   .nx-overflow-hidden {

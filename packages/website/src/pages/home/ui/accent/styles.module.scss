@@ -1,3 +1,16 @@
+// `filter: blur()` with a large radius freezes iOS Safari, so the soft glow
+// is drawn as a gradient (approximating a blurred circle) and scaled up.
+@mixin glow($color, $strength: 0.5, $scale: 2.4) {
+  transform: scale($scale);
+  background: radial-gradient(
+    closest-side,
+    rgba($color, $strength),
+    rgba($color, $strength * 64%) 40%,
+    rgba($color, $strength * 25%) 70%,
+    transparent
+  );
+}
+
 .container {
   position: relative;
 
@@ -14,8 +27,6 @@
       position: absolute;
       opacity: 0.4;
       z-index: 1;
-      filter: blur(256px);
-      border-radius: 50%;
       content: "";
     }
 
@@ -25,11 +36,15 @@
         left: -12.25em;
         flex-shrink: 0;
         opacity: 0.6;
-        background-color: #4778ff;
+
+        @include glow(#4778ff, 0.16, 3.6);
+
         width: 18.75em;
         height: 18.75em;
 
         @media (width >= 640px) {
+          @include glow(#4778ff);
+
           top: -34em;
           left: -16em;
           opacity: 0.4;
@@ -39,17 +54,20 @@
       }
 
       &::after {
+        @include glow(#ff47ea, 0.16, 3.6);
+
         top: -24em;
         right: 0;
         flex-shrink: 0;
         opacity: 0.4;
-        background-color: #ff47ea;
         width: 37.5em;
         max-width: 75vw;
         height: 37.5em;
         max-height: 75vw;
 
         @media (width >= 640px) {
+          @include glow(#ff47ea);
+
           top: -34em;
           right: 0;
         }
@@ -58,21 +76,23 @@
 
     &--demonstration {
       &::before {
+        @include glow(#454bff);
+
         top: -24em;
         right: 37.5em;
         flex-shrink: 0;
         opacity: 0.3;
-        background-color: #454bff;
         width: 37.5em;
         height: 37.5em;
       }
 
       &::after {
+        @include glow(#ff4794);
+
         top: 0;
         right: 0;
         flex-shrink: 0;
         opacity: 0.25;
-        background-color: #ff4794;
         width: 37.5em;
         height: 37.5em;
       }

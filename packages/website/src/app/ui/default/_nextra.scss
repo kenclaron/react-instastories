@@ -36,6 +36,19 @@ html {
     "Noto Color Emoji";
 }
 
+html,
+body {
+  overflow-x: clip;
+
+  &:has(.instastories-viewer) {
+    overflow: clip !important;
+  }
+
+  .nx-overflow-hidden {
+    overflow: clip !important;
+  }
+}
+
 .light .nextra-nav-container,
 .dark .nextra-nav-container {
   z-index: 10;

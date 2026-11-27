@@ -51,6 +51,7 @@ const config: DocsThemeConfig = {
       <meta content="512" property="og:image:width" />
       <meta content="256" property="og:image:height" />
       <meta content="clipboard-write 'self'" httpEquiv="Feature-Policy" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
     </>
   ),
   useNextSeoProps() {
